@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                           fillColor: Colors.white,
                           filled: true,
-                          labelText: "Email Address",
+                          hintText: "Email Address",
                           floatingLabelBehavior: FloatingLabelBehavior.never,
                           // border: InputBorder.none,
                           errorBorder: OutlineInputBorder(
@@ -62,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
                               borderRadius: BorderRadius.circular(10.0))),
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter your Email address';
+                          return 'Tolong lengkapi Email address';
                         }
                         return null;
                       },
@@ -74,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                       decoration: InputDecoration(
                         fillColor: Colors.white,
                         filled: true,
-                        labelText: 'Password',
+                        hintText: 'Kata Sandi',
                         floatingLabelBehavior: FloatingLabelBehavior.never,
                         errorBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -105,7 +106,7 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: _obscureText,
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Please enter your Password';
+                          return 'Tolong lengkapi Kata Sandi';
                         }
                         return null;
                       },
@@ -116,7 +117,8 @@ class _LoginPageState extends State<LoginPage> {
                         "Lupa Password",
                         style: TextStyle(
                             color: ConstantColors.primaryColor,
-                            fontWeight: FontWeight.bold, fontSize: 16),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                       onTap: () {},
                     ),
@@ -155,7 +157,11 @@ class _LoginPageState extends State<LoginPage> {
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16),
                           ),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => RegisterPage()),
+                            );
+                          },
                         ),
                       ],
                     )
