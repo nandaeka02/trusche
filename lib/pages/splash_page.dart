@@ -37,11 +37,6 @@ class _SplashPageState extends State<SplashPage> {
             ConstantColors.primaryColor,
             ConstantColors.secondaryColor
           ])
-          // color: ConstantColors.primaryColor,
-          // image: DecorationImage(
-          //   image: AssetImage('assets/images/Splash-Screen-Background.png'),
-          //   fit: BoxFit.cover,
-          // ),
         ),
         child: Center(
           child: Stack(
@@ -57,7 +52,6 @@ class _SplashPageState extends State<SplashPage> {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),
