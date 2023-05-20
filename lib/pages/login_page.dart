@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/admin/adminHome_page.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/userHome_page.dart';
+import 'package:trusche/pages/user/user_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +19,19 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
+
+  _loginProgress() {
+    if (_emailController.text == 'admin@admin.com' &&
+        _passwordController.text == '123') {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => AdminHomePage()),
+      );
+    }else{
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => UserHomepage()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -134,6 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
+                          _loginProgress();
                         }
                       },
                       child: Text(
