@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trusche/pages/splash_page.dart';
+import 'package:trusche/pages/user/userHome_page.dart';
+import 'package:trusche/pages/user/userbotBar.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const SplashPage(),
+      home: const UserbotBar(),
     );
   }
 }
