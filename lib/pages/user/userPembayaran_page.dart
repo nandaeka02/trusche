@@ -72,7 +72,7 @@ class _UserPembayaranState extends State<UserPembayaran> {
                   // padding: const EdgeInsets.all(8.0),
 
                   width: double.infinity,
-                  height: 440,
+                  height: 450,
                   child: ContainedTabBarView(
                       tabs: [
                         Text(
@@ -344,7 +344,27 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                         ),
                                       ],
                                     ),
-                                  ))
+                                  )),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                height: 45,
+                                width: 290,
+                                // color: ConstantColors.primaryColor,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(35),
+                                    color: ConstantColors.primaryColor),
+                                child: Center(
+                                  child: Text(
+                                    "Bayar Sekarang",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -587,7 +607,27 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                         ),
                                       ],
                                     ),
-                                  ))
+                                  )),
+                                  SizedBox(
+                                height: 15,
+                              ),
+                              Container(
+                                height: 45,
+                                width: 290,
+                                // color: ConstantColors.primaryColor,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(35),
+                                    color: ConstantColors.primaryColor),
+                                child: Center(
+                                  child: Text(
+                                    "Bayar Sekarang",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15),
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/userNotification.dart';
 
 class UserHomepage extends StatefulWidget {
   const UserHomepage({super.key});
@@ -61,10 +62,16 @@ class _UserHomepageState extends State<UserHomepage> {
                 child: IconButton(
                   icon: Icon(
                     Icons.notifications_none,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                   tooltip: 'Go to the next page',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => UserNotification()),
+                                );
+                  },
                 ),
               ),
             )
