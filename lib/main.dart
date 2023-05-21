@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AdminBottomBarPage(),
+      home: const UserbotBar(),
     );
   }
 }
