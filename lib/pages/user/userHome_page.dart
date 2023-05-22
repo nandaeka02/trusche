@@ -17,6 +17,8 @@ class _UserHomepageState extends State<UserHomepage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController email = TextEditingController();
+
   bool _obscureText = true;
   final _pageController = PageController(initialPage: 2);
 
@@ -39,75 +41,197 @@ class _UserHomepageState extends State<UserHomepage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          toolbarHeight: 50,
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: Padding(
-            padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
-            child: GestureDetector(
-              child: CircleAvatar(
-                backgroundColor: Colors.brown.shade800,
-                child: const Text('AH'),
-              ),
-            ),
-          ),
-          actions: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: IconTheme(
-                data: IconThemeData(size: 30),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.notifications_none,
-                    color: Colors.white,
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              toolbarHeight: 50,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              leading: Padding(
+                padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
+                child: GestureDetector(
+                  child: CircleAvatar(
+                    backgroundColor: Colors.brown.shade800,
+                    child: const Text('AH'),
                   ),
-                  tooltip: 'Go to the next page',
-                  onPressed: () {
-                    Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => UserNotification()),
-                                );
-                  },
                 ),
               ),
-            )
-          ],
-        ),
-        backgroundColor: ConstantColors.secondaryColor,
-        body: Column(
-          children: [
-            Container(
-              height: 250,
-              width: double.infinity,
-              decoration: BoxDecoration(color: HexColor("#609C56")),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Align(
-                      alignment: AlignmentDirectional.centerStart,
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(15, 110, 0, 0),
-                        child: Text(
-                          'Halo, User!',
-                          style: TextStyle(
-                              fontSize: 32,fontWeight: FontWeight.w500, color: Colors.white),
-
-                        ),
-                      ))
-                ],
-              ),
+              actions: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: IconTheme(
+                    data: IconThemeData(size: 30),
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.notifications_none,
+                        color: Colors.white,
+                      ),
+                      tooltip: 'Go to the next page',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => UserNotification()),
+                        );
+                      },
+                    ),
+                  ),
+                )
+              ],
             ),
-            Container(
-              height: 180,
-              width: 330,
-              decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20)),
-              child: Center(child: Text("nan ini gmn caranya biar bisa ditengah2 ijo ama krem dah")),
-            )
-          ],
-        ));
+            backgroundColor: ConstantColors.secondaryColor,
+            body: Column(
+              children: [
+                Stack(
+                  // alignment: Alignment.topLeft,
+                  children: [
+                    Container(
+                      height: 250,
+                      width: double.infinity,
+                      decoration: BoxDecoration(color: HexColor("#609C56")),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Align(
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Padding(
+                                padding: EdgeInsets.fromLTRB(15, 110, 0, 0),
+                                child: Text(
+                                  'Halo, User!',
+                                  style: TextStyle(
+                                      fontSize: 32,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white),
+                                ),
+                              ))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )),
+        Positioned(
+            top: 170,
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Card(
+                elevation: 5,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Container(
+                      height: 45,
+                      width: 320,
+                      child: Column(
+                        children: [
+                          Container(
+                            width: 290,
+                            height: 45,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: ConstantColors.primaryColor),
+                            child: Center(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 15),
+                                    child: Icon(
+                                      size: 30,
+                                      Icons.call,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Panggilan Darurat",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      width: 290,
+                      height: 30,
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
+                        child: Text("Kirim Pesan", style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                    Stack(
+                      children: [
+                        Center(
+                          child: SizedBox(
+                            height: 40,
+                            width: 300,
+                            child: TextFormField(
+                              controller: email,
+                              cursorColor: Color(0xFF9b9b9b),
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 10),
+                                floatingLabelStyle:
+                                    TextStyle(color: HexColor("#5E5E5E")),
+                                filled: true,
+                                fillColor: Colors.grey[200],
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50))),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.grey),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50))),
+                                labelText: "Sampaikan Keluhanmu ",
+                                hintStyle: TextStyle(
+                                    color: Color(0xFF9b9b9b),
+                                    fontSize: 5,
+                                    fontWeight: FontWeight.normal),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                            right: 10,
+                            top: 5,
+                            child: GestureDetector(
+                              onTap: () {
+                                print("bisa");
+                              },
+                              child: CircleAvatar(
+                                radius: 15,
+                                child: Icon(
+                                  Icons.arrow_upward,
+                                  color: Colors.white,
+                                ),
+                                backgroundColor: ConstantColors.primaryColor,
+                              ),
+                            )),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    )
+                  ],
+                ),
+              ),
+            )),
+      ],
+    );
   }
 }

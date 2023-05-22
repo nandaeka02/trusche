@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/pages/user/userHome_page.dart';
 import 'package:trusche/pages/user/userPembayaran_page.dart';
+import 'package:trusche/pages/user/userRiwayatPembayaran_page.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 
 
@@ -24,7 +25,7 @@ class UserbotBarState extends State<UserbotBar> {
   final List<Widget> bottomBarPages = [
     const UserPembayaran(),
     const UserHomepage(),
-    const Page3(),
+    const UserRiwayatPembayaran(),
 
   ];
 
