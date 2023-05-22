@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trusche/pages/admin/adminBottomBar_page.dart';
+import 'package:trusche/pages/login_page.dart';
 import 'package:trusche/pages/splash_page.dart';
 import 'package:trusche/pages/user/userHome_page.dart';
 import 'package:trusche/pages/user/userbotBar.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const AdminBottomBarPage(),
+      home: const LoginPage(),
     );
   }
 }

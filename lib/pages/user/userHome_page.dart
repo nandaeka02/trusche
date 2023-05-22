@@ -4,7 +4,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/userJadwalKebersihan.dart';
 import 'package:trusche/pages/user/userNotification.dart';
+import 'package:trusche/pages/user/userProfile.dart';
+
+import '../../widgets/schedulecard_widget.dart';
 
 class UserHomepage extends StatefulWidget {
   const UserHomepage({super.key});
@@ -42,7 +46,7 @@ class _UserHomepageState extends State<UserHomepage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
-      alignment: Alignment.center,
+      // alignment: Alignment.center,
       children: [
         Scaffold(
             extendBodyBehindAppBar: true,
@@ -53,6 +57,13 @@ class _UserHomepageState extends State<UserHomepage> {
               leading: Padding(
                 padding: EdgeInsets.fromLTRB(15, 15, 0, 0),
                 child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => UserProfile()),
+                    );
+                  },
                   child: CircleAvatar(
                     backgroundColor: Colors.brown.shade800,
                     child: const Text('AH'),
@@ -86,7 +97,7 @@ class _UserHomepageState extends State<UserHomepage> {
             body: Column(
               children: [
                 Stack(
-                  // alignment: Alignment.topLeft,
+                  alignment: Alignment.center,
                   children: [
                     Container(
                       height: 250,
@@ -110,12 +121,15 @@ class _UserHomepageState extends State<UserHomepage> {
                         ],
                       ),
                     ),
+                    // SizedBox(height: 100,),
+                    // Text("data")
                   ],
                 ),
               ],
             )),
         Positioned(
-            top: 170,
+            left: 2,
+            top: 150,
             child: Padding(
               padding: EdgeInsets.all(15),
               child: Card(
@@ -166,10 +180,11 @@ class _UserHomepageState extends State<UserHomepage> {
                     ),
                     Container(
                       width: 290,
-                      height: 30,
+                      height: 50,
                       child: Padding(
                         padding: const EdgeInsets.fromLTRB(5, 15, 5, 5),
-                        child: Text("Kirim Pesan", style: TextStyle(fontWeight: FontWeight.bold)),
+                        child: Text("Kirim Pesan",
+                            style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ),
                     Stack(
@@ -226,11 +241,91 @@ class _UserHomepageState extends State<UserHomepage> {
                     ),
                     SizedBox(
                       height: 20,
-                    )
+                    ),
                   ],
                 ),
               ),
             )),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 365,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(
+                "Butuh Apa Hari ini ?",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Center(
+                child: Container(
+              height: 180,
+              child: Expanded(
+                  child: SingleChildScrollView(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => JadwalKebersihan()),
+                          );
+                        },
+                        child: Container(
+                          height: 150,
+                          width: 315,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white,
+                          ),
+                          child: Column(children: [
+                            Image.asset(
+                              'assets/images/user1.png',
+                              scale: 4,
+                            ),
+                            Text("Jadwal Kebersihan")
+                          ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          print("Jadwal Keamanan");
+                        },
+                        child: Container(
+                          height: 150,
+                          width: 315,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white,
+                          ),
+                          child: Column(children: [
+                            Image.asset(
+                              'assets/images/user2.png',
+                              scale: 4,
+                            ),
+                            Text("Jadwal Keamanan")
+                          ]),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                    ]),
+              )),
+            ))
+          ],
+        )
       ],
     );
   }
