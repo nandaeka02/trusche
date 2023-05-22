@@ -28,10 +28,6 @@ class _AdminStatusPageState extends State<AdminStatusPage> {
             backgroundColor: Colors.transparent,
             body: CustomScrollView(
               slivers: <Widget>[
-                // SliverAppBar(
-                //   backgroundColor: Colors.transparent,
-                //   pinned: false,
-                // ),
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
@@ -57,7 +53,7 @@ class _AdminStatusPageState extends State<AdminStatusPage> {
                       ),
                       Center(
                         child: Text(
-                          "Aktivitas Hari Ini",
+                          "Operasional Hari Ini",
                           style: TextStyle(
                               letterSpacing: 1.2,
                               color: Colors.white,
@@ -95,10 +91,6 @@ class _AdminStatusPageState extends State<AdminStatusPage> {
                                 height: 16,
                               ),
                               StatusPagiCard(),
-                              // Padding(
-                              //   padding: EdgeInsets.all(24),
-                              //   child: 
-                              // ),
                               const SizedBox(
                                 height: 80,
                               ),

@@ -131,7 +131,7 @@ class _StatusMalamCardState extends State<StatusMalamCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Pagi - ${status}",
+                      "Malam - ${status}",
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
