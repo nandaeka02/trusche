@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/userJadwalKeamanan.dart';
 import 'package:trusche/pages/user/userJadwalKebersihan.dart';
 import 'package:trusche/pages/user/userNotification.dart';
 import 'package:trusche/pages/user/userProfile.dart';
@@ -300,7 +301,11 @@ class _UserHomepageState extends State<UserHomepage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          print("Jadwal Keamanan");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => JadwalKeamanan()),
+                          );
                         },
                         child: Container(
                           height: 150,

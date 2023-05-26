@@ -9,14 +9,14 @@ import 'package:intl/intl.dart';
 
 import '../../widgets/schedulecard_widget.dart';
 
-class JadwalKebersihan extends StatefulWidget {
-  const JadwalKebersihan({super.key});
+class JadwalKeamanan extends StatefulWidget {
+  const JadwalKeamanan({super.key});
 
   @override
-  State<JadwalKebersihan> createState() => _JadwalKebersihanState();
+  State<JadwalKeamanan> createState() => _JadwalKeamananState();
 }
 
-class _JadwalKebersihanState extends State<JadwalKebersihan> {
+class _JadwalKeamananState extends State<JadwalKeamanan> {
   final _formKey = GlobalKey<FormState>();
   String currentDate = DateFormat('dd').format(DateTime.now());
   String currentMonth = DateFormat('MM').format(DateTime.now());
@@ -230,7 +230,7 @@ class _JadwalKebersihanState extends State<JadwalKebersihan> {
             ),
             // Text("data"),
             Container(
-                height: 300,
+                height: 350,
                 width: 330,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -265,7 +265,21 @@ class _JadwalKebersihanState extends State<JadwalKebersihan> {
                         ],
                       ),
                       Divider(thickness: 1),
-                      Text("Nama Petugas : Tikno"),
+                      Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Nama Petugas : Tikno"),
+                              SizedBox(height: 5,),
+                              Text("No telp : 0819191812771"),
+                            ],
+                          ),
+                          Spacer(),
+                          Icon(Icons.call)
+                        ],
+                      ),
                       SizedBox(
                         height: 35,
                       ),
@@ -285,7 +299,21 @@ class _JadwalKebersihanState extends State<JadwalKebersihan> {
                         ],
                       ),
                       Divider(thickness: 1),
-                      Text("Nama Petugas : Yanto"),
+                      Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Nama Petugas : Kasisrin"),
+                              SizedBox(height: 5,),
+                              Text("No telp : 0819191812771"),
+                            ],
+                          ),
+                          Spacer(),
+                          Icon(Icons.call)
+                        ],
+                      ),
                       SizedBox(
                         height: 35,
                       ),
@@ -305,7 +333,21 @@ class _JadwalKebersihanState extends State<JadwalKebersihan> {
                         ],
                       ),
                       Divider(thickness: 1),
-                      Text("Nama Petugas : Edi"),
+                      Row(
+                        children: [
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Nama Petugas : Didi"),
+                              SizedBox(height: 5,),
+                              Text("No telp : 0819191812771"),
+                            ],
+                          ),
+                          Spacer(),
+                          Icon(Icons.call)
+                        ],
+                      ),
                     ],
                   ),
                 ))
