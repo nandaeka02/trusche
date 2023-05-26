@@ -16,22 +16,6 @@ class UserRiwayatPembayaran extends StatefulWidget {
 
 class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> bulan = [
-    'Januari',
-    'Februari',
-    'Maret',
-    'April',
-    'Mei',
-    'Juni',
-    'Juli',
-    'Agustus',
-    'September',
-    'Oktober',
-    'November',
-    'Desember',
-  ];
-  final List<String> bank = ['BCA', 'BNI', 'Mandiri', 'BRI', 'BSI'];
-  final List<String> ewallet = ['Dana', 'OVO', 'Link Aja'];
   String? selectedBulan;
   String? selectedbank;
   String? selectedewallet;
@@ -49,15 +33,12 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: false,
-        appBar: AppBar(
-          toolbarHeight: 15,
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-        ),
+        
         backgroundColor: ConstantColors.secondaryColor,
         body: Center(
           child: Column(
             children: [
+              SizedBox(height: 50,),
               Text(
                 'Riwayat Pembayaran',
                 style: TextStyle(
@@ -81,6 +62,7 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
                         Text(
                           "Keamanan",
                         ),
+                        
                       ],
                       tabBarProperties: TabBarProperties(
                         padding: const EdgeInsets.symmetric(
@@ -106,8 +88,6 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
                       ),
                       views: [
                         Container(
-                          height: 10,
-                          width: 10,
                           decoration: BoxDecoration(
                               color: ConstantColors.secondaryColor),
                           child: Column(
