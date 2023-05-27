@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/viewModel/pembayaranVmodel.dart';
 
 class UserPembayaran extends StatefulWidget {
   const UserPembayaran({super.key});
@@ -32,12 +34,75 @@ class _UserPembayaranState extends State<UserPembayaran> {
   ];
   final List<String> bank = ['BCA', 'BNI', 'Mandiri', 'BRI', 'BSI'];
   final List<String> ewallet = ['Dana', 'OVO', 'Link Aja'];
-  String? selectedBulan;
+  String? selectedBulankebersihan;
+  String? selectedBulankeamanan;
   String? selectedbank;
   String? selectedewallet;
 
   bool _obscureText = true;
   final _pageController = PageController(initialPage: 2);
+
+  void initState() {
+    super.initState();
+    // getPembayaranbyID();
+    // getDataLogin();
+  }
+
+  void getPembayarankebersihanbyID() {
+    getPembayarankebersihansingle(selectedBulankebersihan.toString()).then((value) {
+      setState(() {
+        if (value == 200) {
+          Alert(
+            type: AlertType.info,
+            context: context,
+            title: "Pembayaran",
+            desc:
+                "Anda Sudah Membayar Iuran Kebersihan Untuk bulan ${selectedBulankebersihan}",
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "Batalkan",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                color: ConstantColors.primaryColor,
+                radius: BorderRadius.circular(15.0),
+              ),
+            ],
+          ).show();
+        }
+      });
+      // print(dataMitraHome?.success.first.alamatRestoran);
+    });
+  }
+
+  void getPembayarankeamananbyID() {
+    getPembayarankeamanansingle(selectedBulankeamanan.toString()).then((value) {
+      setState(() {
+        if (value == 200) {
+          Alert(
+            type: AlertType.info,
+            context: context,
+            title: "Pembayaran",
+            desc:
+                "Anda Sudah Membayar Iuran Keamanan Untuk bulan ${selectedBulankeamanan}",
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "Batalkan",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                color: ConstantColors.primaryColor,
+                radius: BorderRadius.circular(15.0),
+              ),
+            ],
+          ).show();
+        }
+      });
+      // print(dataMitraHome?.success.first.alamatRestoran);
+    });
+  }
 
   @override
   void dispose() {
@@ -149,11 +214,11 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                     return null;
                                   },
                                   onChanged: (value) {
-                                    selectedBulan = value.toString();
-                                    print(selectedBulan!.toLowerCase());
+                                    selectedBulankebersihan = value.toString();
+                                    print(selectedBulankebersihan!.toLowerCase());
                                   },
                                   onSaved: (value) {
-                                    selectedBulan = value.toString();
+                                    selectedBulankebersihan = value.toString();
                                   },
                                   buttonStyleData: ButtonStyleData(
                                     height: 50,
@@ -348,20 +413,25 @@ class _UserPembayaranState extends State<UserPembayaran> {
                               SizedBox(
                                 height: 15,
                               ),
-                              Container(
-                                height: 45,
-                                width: 290,
-                                // color: ConstantColors.primaryColor,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(35),
-                                    color: ConstantColors.primaryColor),
-                                child: Center(
-                                  child: Text(
-                                    "Bayar Sekarang",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
+                              GestureDetector(
+                                onTap: () {
+                                  getPembayarankebersihanbyID();
+                                },
+                                child: Container(
+                                  height: 45,
+                                  width: 290,
+                                  // color: ConstantColors.primaryColor,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(35),
+                                      color: ConstantColors.primaryColor),
+                                  child: Center(
+                                    child: Text(
+                                      "Bayar Sekarang",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
                                   ),
                                 ),
                               )
@@ -412,11 +482,11 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                     return null;
                                   },
                                   onChanged: (value) {
-                                    selectedBulan = value.toString();
-                                    print(selectedBulan!.toLowerCase());
+                                    selectedBulankeamanan = value.toString();
+                                    print(selectedBulankeamanan!.toLowerCase());
                                   },
                                   onSaved: (value) {
-                                    selectedBulan = value.toString();
+                                    selectedBulankeamanan = value.toString();
                                   },
                                   buttonStyleData: ButtonStyleData(
                                     height: 50,
@@ -608,23 +678,28 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                       ],
                                     ),
                                   )),
-                                  SizedBox(
+                              SizedBox(
                                 height: 15,
                               ),
-                              Container(
-                                height: 45,
-                                width: 290,
-                                // color: ConstantColors.primaryColor,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(35),
-                                    color: ConstantColors.primaryColor),
-                                child: Center(
-                                  child: Text(
-                                    "Bayar Sekarang",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 15),
+                              GestureDetector(
+                                onTap: () {
+                                  getPembayarankeamananbyID();
+                                },
+                                child: Container(
+                                  height: 45,
+                                  width: 290,
+                                  // color: ConstantColors.primaryColor,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(35),
+                                      color: ConstantColors.primaryColor),
+                                  child: Center(
+                                    child: Text(
+                                      "Bayar Sekarang",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15),
+                                    ),
                                   ),
                                 ),
                               )

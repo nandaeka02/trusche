@@ -6,6 +6,9 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/viewModel/pembayaranVmodel.dart';
+
+import 'model/HistoryPembayaran.dart';
 
 class UserRiwayatPembayaran extends StatefulWidget {
   const UserRiwayatPembayaran({super.key});
@@ -20,8 +23,41 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
   String? selectedbank;
   String? selectedewallet;
 
+  HistoryPembayaran? historyPembayarankebersihan;
+  HistoryPembayaran? historyPembayarankeamanan;
+
   bool _obscureText = true;
   final _pageController = PageController(initialPage: 2);
+
+  void initState() {
+    super.initState();
+    getPembayaranHistory();
+    getPembayarankeamananHistory();
+    // getDataLogin();
+  }
+
+  void getPembayaranHistory() {
+    getPembayaranhist().then((value) {
+      setState(() {
+        historyPembayarankebersihan = value;
+        if (historyPembayarankebersihan != null) {
+          print("bisa");
+        }
+      });
+      // print(dataMitraHome?.success.first.alamatRestoran);
+    });
+  }
+  void getPembayarankeamananHistory() {
+    getPembayarankeamananhist().then((value) {
+      setState(() {
+        historyPembayarankeamanan = value;
+        if (historyPembayarankeamanan != null) {
+          print("bisa");
+        }
+      });
+      // print(dataMitraHome?.success.first.alamatRestoran);
+    });
+  }
 
   @override
   void dispose() {
@@ -33,12 +69,13 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
   Widget build(BuildContext context) {
     return Scaffold(
         extendBodyBehindAppBar: false,
-        
         backgroundColor: ConstantColors.secondaryColor,
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Text(
                 'Riwayat Pembayaran',
                 style: TextStyle(
@@ -62,7 +99,6 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
                         Text(
                           "Keamanan",
                         ),
-                        
                       ],
                       tabBarProperties: TabBarProperties(
                         padding: const EdgeInsets.symmetric(
@@ -88,143 +124,109 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
                       ),
                       views: [
                         Container(
-                          decoration: BoxDecoration(
-                              color: ConstantColors.secondaryColor),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Column(children: [
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.circle_rounded,
-                                        color: Colors.grey,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: Text("Juni 2023"),
-                                      ),
-                                      Spacer(),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Text("Belum Bayar"),
-                                      )
-                                    ],
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.circle_rounded,
-                                        color: Colors.grey,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: Text("Mei 2023"),
-                                      ),
-                                      Spacer(),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("Belum Bayar"),
-                                      )
-                                    ],
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.circle_rounded,
-                                        color: Colors.green,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: Text("April 2023"),
-                                      ),
-                                      Spacer(),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("Berhasil"),
-                                      )
-                                    ],
-                                  ),
-                                ]),
-                              )
-                            ],
-                          ),
-                        ),
+                            decoration: BoxDecoration(
+                                color: ConstantColors.secondaryColor),
+                            child: historyPembayarankebersihan == null
+                                      ? Center(
+                                          child: Scaffold(
+                                          backgroundColor: ConstantColors.secondaryColor,
+                                          body: Center(
+                                              child: Text(
+                                            "Tidak ada riwayat pembayaran"
+                                          )),
+                                        ))
+                                      : ListView.builder(
+                                itemCount: historyPembayarankebersihan?.data.length,
+                                itemBuilder: (context, i) {
+                                  var data = historyPembayarankebersihan?.data[i];
+                                  return Padding(
+                                      padding: EdgeInsets.all(15),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Padding(padding: EdgeInsets.all(0), 
+                                              child: data!.status == "Berhasil"
+                                              ? Icon(
+                                                Icons.circle_rounded,
+                                                color: ConstantColors.primaryColor,
+                                              )
+                                              :Icon(
+                                                Icons.circle_rounded,
+                                                color: Colors.grey,
+                                              )
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.all(15),
+                                                child: Text(data!.pembayaranBulan + " 2023"),
+                                              ),
+                                              Spacer(),
+                                              Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: Text(data.status),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ));
+                                })),
                         Container(
-                          height: 10,
-                          width: 10,
-                          decoration: BoxDecoration(
-                              color: ConstantColors.secondaryColor),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: EdgeInsets.all(15),
-                                child: Column(children: [
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.circle_rounded,
-                                        color: Colors.grey,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: Text("Juni 2023"),
-                                      ),
-                                      Spacer(),
-                                      Align(
-                                        alignment: Alignment.bottomRight,
-                                        child: Text("Belum Bayar"),
-                                      )
-                                    ],
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.circle_rounded,
-                                        color: Colors.green,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: Text("Mei 2023"),
-                                      ),
-                                      Spacer(),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("Berhasil"),
-                                      )
-                                    ],
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.circle_rounded,
-                                        color: Colors.green,
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.all(15),
-                                        child: Text("April 2023"),
-                                      ),
-                                      Spacer(),
-                                      Align(
-                                        alignment: Alignment.topLeft,
-                                        child: Text("Berhasil"),
-                                      )
-                                    ],
-                                  ),
-                                ]),
-                              )
-                            ],
-                          ),
-                        ),
+                            decoration: BoxDecoration(
+                                color: ConstantColors.secondaryColor),
+                            child: historyPembayarankeamanan == null
+                                      ? Center(
+                                          child: Scaffold(
+                                          backgroundColor: ConstantColors.secondaryColor,
+                                          body: Center(
+                                              child: Text(
+                                            "Tidak ada riwayat pembayaran"
+                                          )),
+                                        ))
+                                      : ListView.builder(
+                                itemCount: historyPembayarankeamanan?.data.length,
+                                itemBuilder: (context, i) {
+                                  var data = historyPembayarankeamanan?.data[i];
+                                  return Padding(
+                                      padding: EdgeInsets.all(15),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Padding(padding: EdgeInsets.all(0), 
+                                              child: data!.status == "Berhasil"
+                                              ? Icon(
+                                                Icons.circle_rounded,
+                                                color: ConstantColors.primaryColor,
+                                              )
+                                              :Icon(
+                                                Icons.circle_rounded,
+                                                color: Colors.grey,
+                                              )
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsets.all(15),
+                                                child: Text(data!.pembayaranBulan + " 2023"),
+                                              ),
+                                              Spacer(),
+                                              Align(
+                                                alignment:
+                                                    Alignment.bottomRight,
+                                                child: Text(data.status),
+                                              )
+                                            ],
+                                          ),
+                                        ],
+                                      ));
+                                })),
                       ]))
             ],
           ),
