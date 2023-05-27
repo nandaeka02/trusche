@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/configs/dataWarga.dart';
+import 'package:trusche/pages/admin/adminDetailUser_page.dart';
 
 class AdminDataWargaPage extends StatefulWidget {
   const AdminDataWargaPage({super.key});
@@ -13,39 +15,49 @@ class AdminDataWargaPage extends StatefulWidget {
 class _AdminDataWargaPageState extends State<AdminDataWargaPage> {
   TextEditingController editingController = TextEditingController();
 
-  final duplicateItems =
-      List<Widget>.generate(10000, (i) => _buildCard("Item $i"));
+  List<dataWarga> dataWargas = allDataWarga;
   var items = <Widget>[];
+
+  void navigateToOtherPage(String name) {
+    // Navigasi ke halaman tujuan di sini
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => AdminDetailUserPage(
+                name: name,
+              )),
+    );
+  }
 
   @override
   void initState() {
-    items = duplicateItems;
+    // items = duplicateItems;
     super.initState();
   }
 
-  void filterSearchResults(String query) {
-    setState(() {
-      items = duplicateItems.where((widget) {
-        if (widget is Card) {
-          Card card = widget;
-          if (card.child is InkWell) {
-            InkWell inkWell = card.child as InkWell;
-            if (inkWell.child is Container) {
-              Container container = inkWell.child as Container;
-              if (container.child is ListTile) {
-                ListTile listTile = container.child as ListTile;
-                return listTile.title
-                    .toString()
-                    .toLowerCase()
-                    .contains(query.toLowerCase());
-              }
-            }
-          }
-        }
-        return false;
-      }).toList();
-    });
-  }
+  // void filterSearchResults(String query) {
+  //   setState(() {
+  //     items = duplicateItems.where((widget) {
+  //       if (widget is Card) {
+  //         Card card = widget;
+  //         if (card.child is InkWell) {
+  //           InkWell inkWell = card.child as InkWell;
+  //           if (inkWell.child is Container) {
+  //             Container container = inkWell.child as Container;
+  //             if (container.child is ListTile) {
+  //               ListTile listTile = container.child as ListTile;
+  //               return listTile.title
+  //                   .toString()
+  //                   .toLowerCase()
+  //                   .contains(query.toLowerCase());
+  //             }
+  //           }
+  //         }
+  //       }
+  //       return false;
+  //     }).toList();
+  //   });
+  // }
 
   static Widget _buildCard(String text) {
     return Card(
@@ -86,9 +98,10 @@ class _AdminDataWargaPageState extends State<AdminDataWargaPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
               child: TextField(
-                onChanged: (value) {
-                  filterSearchResults(value);
-                },
+                // onChanged: (value) {
+                  // filterSearchResults(value);
+                // },
+                onChanged: searchDataWarga,
                 controller: editingController,
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -120,9 +133,46 @@ class _AdminDataWargaPageState extends State<AdminDataWargaPage> {
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 8),
               child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: items.length,
+                itemCount: dataWargas.length, 
                 itemBuilder: (context, index) {
-                  return items[index];
+                  // return items[index];
+                  final dataWarga = dataWargas[index];
+                  return Card(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: InkWell(
+                      splashColor: ConstantColors.primarysplashColor,
+                      borderRadius: BorderRadius.circular(8),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AdminDetailUserPage(
+                                    name: dataWarga.name,
+                                  )),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8),
+                        // height: 58,
+                        child: ListTile(
+                          title: Text(
+                            dataWarga.name,
+                            style: TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          leading: Icon(Icons.person),
+                          subtitle: Text(
+                            'Bojong Gede Blok TD 6 No 5A RT 002 RW 012',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                  // items.add(listData);
+                  // return listData;
                 },
               ),
             )),
@@ -130,5 +180,15 @@ class _AdminDataWargaPageState extends State<AdminDataWargaPage> {
         ),
       ),
     );
+  }
+  void searchDataWarga(String query){
+    final suggestions = allDataWarga.where((data) {
+      final namaDataWarga = data.name.toLowerCase();
+      final input = query.toLowerCase();
+
+      return namaDataWarga.contains(input);
+    }).toList();
+
+    setState(() => dataWargas = suggestions);
   }
 }

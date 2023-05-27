@@ -15,6 +15,7 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
+  TextEditingController _soundNotifController = TextEditingController();
   TextEditingController _languageController = TextEditingController();
 
   @override
@@ -33,7 +34,8 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0,
-              title: Text('Background Image'),
+              centerTitle: true,
+              title: Text('Settings'),
             ),
             body: ListView(
               children: [
@@ -80,7 +82,10 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 const SizedBox(height: 16),
-                                Text("Username", style: TextStyle(fontSize: 14),),
+                                Text(
+                                  "Username",
+                                  style: TextStyle(fontSize: 14),
+                                ),
                                 const SizedBox(height: 4),
                                 TextFormField(
                                   controller: _usernameController,
@@ -129,7 +134,10 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                                   },
                                 ),
                                 const SizedBox(height: 16),
-                                Text("Password", style: TextStyle(fontSize: 14),),
+                                Text(
+                                  "Password",
+                                  style: TextStyle(fontSize: 14),
+                                ),
                                 const SizedBox(height: 4),
                                 TextFormField(
                                   controller: _passwordController,
@@ -178,7 +186,10 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                                   },
                                 ),
                                 const SizedBox(height: 16),
-                                Text("Email Address", style: TextStyle(fontSize: 14),),
+                                Text(
+                                  "Email Address",
+                                  style: TextStyle(fontSize: 14),
+                                ),
                                 const SizedBox(height: 4),
                                 TextFormField(
                                   controller: _emailController,
@@ -226,6 +237,110 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                                     return null;
                                   },
                                 ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  "Suara Notifikasi",
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                const SizedBox(height: 4),
+                                TextFormField(
+                                  controller: _emailController,
+                                  autofocus: true,
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(14, 16, 14, 16),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    hintText: "Suara Notifikasi",
+                                    hintStyle: TextStyle(fontSize: 14),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                    // border: InputBorder.none,
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.transparent),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.transparent),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Tolong lengkapi Suara Notifikasi';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                                const SizedBox(height: 16),
+                                Text(
+                                  "Bahasa",
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                                const SizedBox(height: 4),
+                                TextFormField(
+                                  controller: _emailController,
+                                  autofocus: true,
+                                  enabled: false,
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.fromLTRB(14, 16, 14, 16),
+                                    fillColor: Colors.white,
+                                    filled: true,
+                                    hintText: "Bahasa",
+                                    hintStyle: TextStyle(fontSize: 14),
+                                    floatingLabelBehavior:
+                                        FloatingLabelBehavior.never,
+                                    // border: InputBorder.none,
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Colors.red,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.transparent),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                        borderSide: BorderSide.none,
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                    disabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.transparent),
+                                        borderRadius:
+                                            BorderRadius.circular(10.0)),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'Tolong lengkapi Bahasa';
+                                    }
+                                    return null;
+                                  },
+                                ),
                                 const SizedBox(height: 32),
                                 ElevatedButton(
                                   style: ElevatedButton.styleFrom(
@@ -238,22 +353,25 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                                     ),
                                   ),
                                   onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      _formKey.currentState!.save();
-                                      // _loginProgress();
-                                    }
+                                    // if (_formKey.currentState!.validate()) {
+                                    //   _formKey.currentState!.save();
+                                    //   // _loginProgress();
+                                    // }
                                   },
                                   child: Text(
-                                    'Buat Jadwal',
+                                    'Logout',
                                     style: TextStyle(fontSize: 14),
                                   ),
                                 ),
                                 const SizedBox(height: 16),
+                                Center(
+                                  child: Text(
+                                    "V 1.0.0",
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ),
                               ],
                             ),
-                          ),
-                          const SizedBox(
-                            height: 500,
                           ),
                         ],
                       )),
