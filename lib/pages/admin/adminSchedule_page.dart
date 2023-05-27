@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/admin/adminBuatJadwal_page.dart';
+import 'package:trusche/pages/admin/adminLihatJadwal_page.dart';
 import 'package:trusche/widgets/schedulecard_widget.dart';
 
 class AdminSchedulePage extends StatefulWidget {
@@ -37,7 +39,11 @@ class _AdminSchedulePageState extends State<AdminSchedulePage> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(16, 16, 16, 0),
                     child: ScheduleCard(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => AdminLihatJadwalPage()),
+                            );
+                      },
                       child: Column(
                         children: [
                           Icon(Icons.event_available),
@@ -49,7 +55,11 @@ class _AdminSchedulePageState extends State<AdminSchedulePage> {
                   Padding(
                     padding: EdgeInsets.fromLTRB(16, 16, 16, 16),
                     child: ScheduleCard(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                              MaterialPageRoute(builder: (_) => AdminBuatJadwalPage()),
+                            );
+                      },
                       child: Column(
                         children: [
                           Icon(Icons.edit_calendar),

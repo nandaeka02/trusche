@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/admin/adminSettings_page.dart';
 import 'package:trusche/widgets/activity_widget.dart';
 
 class AdminHomePage extends StatefulWidget {
@@ -33,8 +34,13 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   actions: [
                     IconButton(onPressed: () {}, icon: Icon(Icons.logout))
                   ],
-                  leading:
-                      IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+                  leading: IconButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => AdminSettingsPage()),
+                        );
+                      },
+                      icon: Icon(Icons.settings)),
                 ),
                 SliverList(
                   delegate: SliverChildListDelegate(
