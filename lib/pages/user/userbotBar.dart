@@ -9,7 +9,9 @@ import 'package:trusche/pages/user/userRiwayatPembayaran_page.dart';
 
 
 class UserbotBar extends StatefulWidget {
-  const UserbotBar({Key? key}) : super(key: key);
+  const UserbotBar ({Key? key}) : super(key: key);
+  // const UserbotBar ({required this.idOper, Key? key}) : super(key: key);
+  // final int idOper;
 
   @override
   State<UserbotBar> createState() => UserbotBarState();

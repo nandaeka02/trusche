@@ -6,9 +6,11 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
+import 'package:trusche/pages/user/viewModel/getUserVmodel.dart';
 import 'package:trusche/pages/user/viewModel/pembayaranVmodel.dart';
 
 import 'model/HistoryPembayaran.dart';
+import 'model/UserDetail.dart';
 
 class UserRiwayatPembayaran extends StatefulWidget {
   const UserRiwayatPembayaran({super.key});
@@ -22,6 +24,7 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
   String? selectedBulan;
   String? selectedbank;
   String? selectedewallet;
+  Userdetail? userdetail;
 
   HistoryPembayaran? historyPembayarankebersihan;
   HistoryPembayaran? historyPembayarankeamanan;
@@ -31,13 +34,21 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
 
   void initState() {
     super.initState();
-    getPembayaranHistory();
-    getPembayarankeamananHistory();
+    getUser();
     // getDataLogin();
   }
 
+  void getUser() {
+    getuserLogin().then((value) {
+      setState(() {
+        userdetail = value;
+        // print(userdetail?.user.email);
+      });
+    });
+  }
+
   void getPembayaranHistory() {
-    getPembayaranhist().then((value) {
+    getPembayaranhist(userdetail!.user.id).then((value) {
       setState(() {
         historyPembayarankebersihan = value;
         if (historyPembayarankebersihan != null) {
@@ -47,8 +58,9 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
       // print(dataMitraHome?.success.first.alamatRestoran);
     });
   }
+
   void getPembayarankeamananHistory() {
-    getPembayarankeamananhist().then((value) {
+    getPembayarankeamananhist(userdetail!.user.id).then((value) {
       setState(() {
         historyPembayarankeamanan = value;
         if (historyPembayarankeamanan != null) {
@@ -127,106 +139,150 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
                             decoration: BoxDecoration(
                                 color: ConstantColors.secondaryColor),
                             child: historyPembayarankebersihan == null
-                                      ? Center(
-                                          child: Scaffold(
-                                          backgroundColor: ConstantColors.secondaryColor,
-                                          body: Center(
-                                              child: Text(
-                                            "Tidak ada riwayat pembayaran"
-                                          )),
-                                        ))
-                                      : ListView.builder(
-                                itemCount: historyPembayarankebersihan?.data.length,
-                                itemBuilder: (context, i) {
-                                  var data = historyPembayarankebersihan?.data[i];
-                                  return Padding(
-                                      padding: EdgeInsets.all(15),
+                                ? Center(
+                                    child: Scaffold(
+                                    backgroundColor:
+                                        ConstantColors.secondaryColor,
+                                    body: Center(
+                                        child: GestureDetector(
+                                      onTap: () {
+                                        getPembayaranHistory();
+                                        getPembayarankeamananHistory();
+                                      },
                                       child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Padding(padding: EdgeInsets.all(0), 
-                                              child: data!.status == "Berhasil"
-                                              ? Icon(
-                                                Icons.circle_rounded,
-                                                color: ConstantColors.primaryColor,
-                                              )
-                                              :Icon(
-                                                Icons.circle_rounded,
-                                                color: Colors.grey,
-                                              )
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(data!.pembayaranBulan + " 2023"),
-                                              ),
-                                              Spacer(),
-                                              Align(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: Text(data.status),
-                                              )
-                                            ],
-                                          ),
+                                          Text("Tidak ada Riwayat Pembayaran"),
+                                          Icon(Icons.replay_outlined)
                                         ],
-                                      ));
-                                })),
+                                      ),
+                                    )),
+                                  ))
+                                : ListView.builder(
+                                    itemCount: historyPembayarankebersihan
+                                        ?.data.length,
+                                    itemBuilder: (context, i) {
+                                      var data =
+                                          historyPembayarankebersihan?.data[i];
+                                      return Padding(
+                                          padding: EdgeInsets.all(15),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                      padding:
+                                                          EdgeInsets.all(0),
+                                                      child: data!.status ==
+                                                              "Berhasil"
+                                                          ? Icon(
+                                                              Icons
+                                                                  .circle_rounded,
+                                                              color: ConstantColors
+                                                                  .primaryColor,
+                                                            )
+                                                          : Icon(
+                                                              Icons
+                                                                  .circle_rounded,
+                                                              color:
+                                                                  Colors.grey,
+                                                            )),
+                                                  Padding(
+                                                    padding: EdgeInsets.all(15),
+                                                    child: Text(
+                                                        data!.pembayaranBulan +
+                                                            " 2023"),
+                                                  ),
+                                                  Spacer(),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: Text(data.status),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ));
+                                    })),
                         Container(
                             decoration: BoxDecoration(
                                 color: ConstantColors.secondaryColor),
                             child: historyPembayarankeamanan == null
-                                      ? Center(
-                                          child: Scaffold(
-                                          backgroundColor: ConstantColors.secondaryColor,
-                                          body: Center(
-                                              child: Text(
-                                            "Tidak ada riwayat pembayaran"
-                                          )),
-                                        ))
-                                      : ListView.builder(
-                                itemCount: historyPembayarankeamanan?.data.length,
-                                itemBuilder: (context, i) {
-                                  var data = historyPembayarankeamanan?.data[i];
-                                  return Padding(
-                                      padding: EdgeInsets.all(15),
+                                ? Center(
+                                    child: Scaffold(
+                                    backgroundColor:
+                                        ConstantColors.secondaryColor,
+                                    body: Center(
+                                        child: GestureDetector(
+                                      onTap: () {
+                                        getPembayaranHistory();
+                                        getPembayarankeamananHistory();
+                                      },
                                       child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Padding(padding: EdgeInsets.all(0), 
-                                              child: data!.status == "Berhasil"
-                                              ? Icon(
-                                                Icons.circle_rounded,
-                                                color: ConstantColors.primaryColor,
-                                              )
-                                              :Icon(
-                                                Icons.circle_rounded,
-                                                color: Colors.grey,
-                                              )
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.all(15),
-                                                child: Text(data!.pembayaranBulan + " 2023"),
-                                              ),
-                                              Spacer(),
-                                              Align(
-                                                alignment:
-                                                    Alignment.bottomRight,
-                                                child: Text(data.status),
-                                              )
-                                            ],
-                                          ),
+                                          Text("Tidak ada Riwayat Pembayaran"),
+                                          Icon(Icons.replay_outlined)
                                         ],
-                                      ));
-                                })),
+                                      ),
+                                    )),
+                                  ))
+                                : ListView.builder(
+                                    itemCount:
+                                        historyPembayarankeamanan?.data.length,
+                                    itemBuilder: (context, i) {
+                                      var data =
+                                          historyPembayarankeamanan?.data[i];
+                                      return Padding(
+                                          padding: EdgeInsets.all(15),
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                      padding:
+                                                          EdgeInsets.all(0),
+                                                      child: data!.status ==
+                                                              "Berhasil"
+                                                          ? Icon(
+                                                              Icons
+                                                                  .circle_rounded,
+                                                              color: ConstantColors
+                                                                  .primaryColor,
+                                                            )
+                                                          : Icon(
+                                                              Icons
+                                                                  .circle_rounded,
+                                                              color:
+                                                                  Colors.grey,
+                                                            )),
+                                                  Padding(
+                                                    padding: EdgeInsets.all(15),
+                                                    child: Text(
+                                                        data!.pembayaranBulan +
+                                                            " 2023"),
+                                                  ),
+                                                  Spacer(),
+                                                  Align(
+                                                    alignment:
+                                                        Alignment.bottomRight,
+                                                    child: Text(data.status),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ));
+                                    })),
                       ]))
             ],
           ),

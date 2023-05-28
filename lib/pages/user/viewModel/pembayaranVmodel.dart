@@ -52,9 +52,10 @@ Future getPembayarankebersihansingle(String bulan) async {
   }
 }
 
-Future getPembayaranhist() async {
+Future getPembayaranhist(int id) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayaranuser/2";
+    print(id);
+    var url = "http://192.168.100.47:8000/api/pembayaranuser/$id";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -66,7 +67,6 @@ Future getPembayaranhist() async {
     }
 
     if (hasil.statusCode == 200) {
-      print("Sukses Dapetin Banner");
       // print(hasil.body.le);
       // historyPembayaran = historyPembayaranFromJson(hasil.body.toString());
       final data = historyPembayaranFromJson(hasil.body.toString());
@@ -79,21 +79,21 @@ Future getPembayaranhist() async {
   }
 }
 
-Future getPembayarankeamananhist() async {
+Future getPembayarankeamananhist(int id) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayarankeamananuser/2";
+    var url = "http://192.168.100.47:8000/api/pembayarankeamananuser/$id";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
     print(hasil.statusCode.toString());
 
     if (hasil.statusCode != 200) {
-      print("gagal Dapetin Banner");
+      print("gagal");
       return null;
     }
 
     if (hasil.statusCode == 200) {
-      print("Sukses Dapetin Banner");
+      print("Sukses");
       // print(hasil.body.le);
       // historyPembayaran = historyPembayaranFromJson(hasil.body.toString());
       final data = historyPembayaranFromJson(hasil.body.toString());

@@ -6,6 +6,9 @@ import 'package:trusche/pages/admin/adminHome_page.dart';
 import 'package:trusche/pages/register_page.dart';
 import 'package:trusche/pages/user/userHome_page.dart';
 import 'package:trusche/pages/user/user_page.dart';
+import 'package:trusche/pages/user/userbotBar.dart';
+
+import 'auth/auth_Vmodel.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -26,11 +29,27 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => AdminHomePage()),
       );
-    }else{
+    } else {
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (_) => UserHomepage()),
       );
     }
+  }
+
+  void getPembayarankebersihanbyID() {
+    iniLogin(_emailController.text, _passwordController.text).then((value) {
+      setState(() {
+        if (value == "admin") {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => AdminHomePage()),
+          );
+        } else if (value == "user") {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => UserbotBar()),
+          );
+        }
+      });
+    });
   }
 
   @override
@@ -139,6 +158,20 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {},
                     ),
                     const SizedBox(height: 32),
+                    GestureDetector(
+                      child: Text(
+                        "ke admin",
+                        style: TextStyle(
+                            color: ConstantColors.primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => AdminHomePage()),
+                        );
+                      },
+                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.only(top: 16, bottom: 16),
@@ -148,10 +181,11 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          _formKey.currentState!.save();
-                          _loginProgress();
-                        }
+                        // if (_formKey.currentState!.validate()) {
+                        //   _formKey.currentState!.save();
+                        //   _loginProgress();
+                        // }
+                        getPembayarankebersihanbyID();
                       },
                       child: Text(
                         'Login',
