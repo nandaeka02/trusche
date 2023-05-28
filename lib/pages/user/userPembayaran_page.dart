@@ -36,8 +36,12 @@ class _UserPembayaranState extends State<UserPembayaran> {
   final List<String> ewallet = ['Dana', 'OVO', 'Link Aja'];
   String? selectedBulankebersihan;
   String? selectedBulankeamanan;
-  String? selectedbank;
-  String? selectedewallet;
+
+  String? selectedbankKebersihan;
+  String? selectedewalletKebersihan;
+
+  String? selectedbankKeamanan;
+  String? selectedewalletKeamanan;
 
   bool _obscureText = true;
   final _pageController = PageController(initialPage: 2);
@@ -49,7 +53,8 @@ class _UserPembayaranState extends State<UserPembayaran> {
   }
 
   void getPembayarankebersihanbyID() {
-    getPembayarankebersihansingle(selectedBulankebersihan.toString()).then((value) {
+    getPembayarankebersihansingle(selectedBulankebersihan.toString())
+        .then((value) {
       setState(() {
         if (value == 200) {
           Alert(
@@ -215,7 +220,10 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                   },
                                   onChanged: (value) {
                                     selectedBulankebersihan = value.toString();
-                                    print(selectedBulankebersihan!.toLowerCase());
+                                    print(selectedbankKebersihan);
+                                    print(selectedewalletKebersihan);
+                                    print(
+                                        selectedBulankebersihan!.toLowerCase());
                                   },
                                   onSaved: (value) {
                                     selectedBulankebersihan = value.toString();
@@ -328,10 +336,11 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedbank,
+                                            value: selectedbankKebersihan,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedbank = value as String;
+                                                selectedbankKebersihan =
+                                                    value as String;
                                               });
                                             },
                                             buttonStyleData:
@@ -389,10 +398,10 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedewallet,
+                                            value: selectedewalletKebersihan,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedewallet =
+                                                selectedewalletKebersihan =
                                                     value as String;
                                               });
                                             },
@@ -415,7 +424,76 @@ class _UserPembayaranState extends State<UserPembayaran> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  getPembayarankebersihanbyID();
+                                  if (selectedBulankebersihan == null) {
+                                    Alert(
+                                      type: AlertType.info,
+                                      context: context,
+                                      title: "Perhatian",
+                                      desc: "Silahkan Pilih Bulan",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Batalkan",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
+                                  } else if (selectedbankKebersihan == null &&
+                                      selectedewalletKebersihan == null) {
+                                    Alert(
+                                      type: AlertType.info,
+                                      context: context,
+                                      title: "Perhatian",
+                                      desc:
+                                          "Silahkan Pilih salah satu Metode Pembayaran",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Batalkan",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
+                                  } else if (selectedbankKebersihan != null &&
+                                      selectedewalletKebersihan != null) {
+                                    Alert(
+                                      type: AlertType.info,
+                                      context: context,
+                                      title: "Perhatian",
+                                      desc:
+                                          "Silahkan Pilih salah satu Metode Pembayaran",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Batalkan",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
+                                  } else {
+                                    getPembayarankebersihanbyID();
+                                  }
                                 },
                                 child: Container(
                                   height: 45,
@@ -596,10 +674,12 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedbank,
+                                            value: selectedbankKeamanan,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedbank = value as String;
+                                                selectedbankKeamanan =
+                                                    value as String;
+                                                print(selectedbankKeamanan);
                                               });
                                             },
                                             buttonStyleData:
@@ -657,10 +737,10 @@ class _UserPembayaranState extends State<UserPembayaran> {
                                                       ),
                                                     ))
                                                 .toList(),
-                                            value: selectedewallet,
+                                            value: selectedewalletKeamanan,
                                             onChanged: (value) {
                                               setState(() {
-                                                selectedewallet =
+                                                selectedewalletKeamanan =
                                                     value as String;
                                               });
                                             },
@@ -683,7 +763,76 @@ class _UserPembayaranState extends State<UserPembayaran> {
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  getPembayarankeamananbyID();
+                                  if (selectedBulankeamanan == null) {
+                                    Alert(
+                                      type: AlertType.info,
+                                      context: context,
+                                      title: "Perhatian",
+                                      desc: "Silahkan Pilih Bulan",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Batalkan",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
+                                  } else if (selectedbankKeamanan == null &&
+                                      selectedewalletKeamanan == null) {
+                                    Alert(
+                                      type: AlertType.info,
+                                      context: context,
+                                      title: "Perhatian",
+                                      desc:
+                                          "Silahkan Pilih salah satu Metode Pembayaran",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Batalkan",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
+                                  } else if (selectedbankKeamanan != null &&
+                                      selectedewalletKeamanan != null) {
+                                    Alert(
+                                      type: AlertType.info,
+                                      context: context,
+                                      title: "Perhatian",
+                                      desc:
+                                          "Silahkan Pilih salah satu Metode Pembayaran",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Batalkan",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
+                                  } else {
+                                    getPembayarankeamananbyID();
+                                  }
                                 },
                                 child: Container(
                                   height: 45,
