@@ -33,16 +33,19 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   backgroundColor: Colors.transparent,
                   pinned: false,
                   actions: [
-                    IconButton(onPressed: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => LoginPage()),
-                        );
-                    }, icon: Icon(Icons.logout))
+                    IconButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (_) => LoginPage()),
+                          );
+                        },
+                        icon: Icon(Icons.logout))
                   ],
                   leading: IconButton(
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => AdminSettingsPage()),
+                          MaterialPageRoute(
+                              builder: (_) => AdminSettingsPage()),
                         );
                       },
                       icon: Icon(Icons.settings)),
