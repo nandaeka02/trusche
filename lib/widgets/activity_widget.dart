@@ -14,47 +14,44 @@ class _ActivityWidgetState extends State<ActivityWidget> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.transparent,
-      elevation: 0,
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 24),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            color: ConstantColors.primaryColor,
+        color: Colors.transparent,
+        elevation: 0,
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+        child: ListTile(
+          contentPadding: EdgeInsets.fromLTRB(8, 4, 8, 4),
+          leading: Container(
             height: 50,
             width: 50,
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          Expanded(
-              child: Column(
-            // mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Rizki Nugraha",
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            decoration: BoxDecoration(
+              color: ConstantColors.primaryColor,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Icon(
+                Icons.local_shipping,
+                size: 30.0,
+                color: Colors.black,
               ),
-              const SizedBox(
-                height: 4,
-              ),
-              Text("have paid the monthly fee!..."),
-            ],
-          )),
-          const SizedBox(
-            width: 8,
+            ),
           ),
-          Container(
-              height: 40,
-              width: 50,
-              child: Text(
-                '10m ago',
-                style: TextStyle(color: Colors.grey, fontSize: 10),
-              )),
-        ],
-      ),
-    );
+          title: Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
+              "Pengangkutan Sampah",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ),
+          subtitle: Text(
+            "Sedang dalam proses...",
+            style: TextStyle(
+              fontSize: 12,
+            ),
+          ),
+          trailing: Text(
+            "8m ago",
+            style: TextStyle(fontSize: 12, color: Colors.grey),
+          ),
+        ));
   }
 }

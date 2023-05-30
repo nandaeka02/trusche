@@ -97,17 +97,19 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: <Widget>[
                         Text(
                           "Nomor Induk Kependudukan",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: _nikController,
                           autofocus: true,
+                          style: TextStyle(fontSize: 12),
                           decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true,
                               hintText: 'NIK',
                               hintStyle: TextStyle(color: Colors.grey),
+                              contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: Colors.red,
@@ -134,17 +136,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(height: 16),
                         Text(
                           "Nama Lengkap",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: _namaController,
-                          autofocus: true,
+                          style: TextStyle(fontSize: 12),
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
                             hintText: 'Nama Lengkap',
                             hintStyle: TextStyle(color: Colors.grey),
+                            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: Colors.red,
@@ -171,6 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         Text(
+<<<<<<< HEAD
                           "Alamat",
                           style: TextStyle(color: Colors.black87, fontSize: 16),
                         ),
@@ -182,6 +186,20 @@ class _RegisterPageState extends State<RegisterPage> {
                             fillColor: Colors.white,
                             filled: true,
                             hintText: 'Alamat',
+=======
+                          "Email Address",
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _emailController,
+                          style: TextStyle(fontSize: 12),
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                            hintText: 'Email Address',
+>>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -210,15 +228,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(height: 16),
                         Text(
                           "Nomor Telepon",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: _notelpController,
-                          autofocus: true,
+                          style: TextStyle(fontSize: 12),
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
+                            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                             hintText: 'Nomor Telepon',
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
@@ -247,6 +266,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         Text(
+<<<<<<< HEAD
                           "Email Address",
                           style: TextStyle(color: Colors.black87, fontSize: 16),
                         ),
@@ -258,6 +278,20 @@ class _RegisterPageState extends State<RegisterPage> {
                             fillColor: Colors.white,
                             filled: true,
                             hintText: 'Email Address',
+=======
+                          "Alamat",
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
+                        ),
+                        const SizedBox(height: 8),
+                        TextFormField(
+                          controller: _alamatController,
+                          style: TextStyle(fontSize: 12),
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
+                            hintText: 'Alamat',
+>>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -286,15 +320,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(height: 16),
                         Text(
                           "Kata Sandi",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: _passwordController,
-                          autofocus: true,
+                          style: TextStyle(fontSize: 12),
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
+                            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                             hintText: 'Kata Sandi',
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
@@ -335,15 +370,16 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(height: 16),
                         Text(
                           "Konfirmasi Kata Sandi",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
+                          style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
                           controller: _confirmpasswordController,
-                          autofocus: true,
+                          style: TextStyle(fontSize: 12),
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
+                            contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                             hintText: 'Konfirmasi Kata Sandi',
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
@@ -386,33 +422,35 @@ class _RegisterPageState extends State<RegisterPage> {
                             }
                             print(value);
                             if (value != _passwordController.text) {
+<<<<<<< HEAD
                               return 'Kata Sandi Tidak samaaa ';
+=======
+                              return 'Konfirmasi Kata Sandi harus sama dengan Kata Sandi ';
+>>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                             }
                             return null;
                           },
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                         ),
                         const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Checkbox(
-                              value: _isCheckedPersyaratan,
-                              onChanged: (bool? value) {
-                                if (value != null) {
-                                  setState(() {
-                                    _isCheckedPersyaratan = value;
-                                  });
-                                }
-                              },
-                            ),
-                            Text('Setuju dengan syarat dan ketentuan'),
-                          ],
+                        CheckboxListTile(
+                          title: Text("Setuju dengan syarat dan ketentuan", style: TextStyle(fontSize: 14),),
+                          controlAffinity: ListTileControlAffinity.leading,
+                          contentPadding: EdgeInsets.zero,
+                          onChanged: (bool? value) {
+                            if (value != null) {
+                              setState(() {
+                                _isCheckedPersyaratan = value;
+                              });
+                            }
+                          },
+                          value:_isCheckedPersyaratan,
                         ),
+                        
                         const SizedBox(height: 40),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.only(top: 16, bottom: 16),
+                            padding: EdgeInsets.only(top: 12, bottom: 12),
                             backgroundColor: ConstantColors.primaryColor,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -421,14 +459,17 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: () {
                             if (_formKey.currentState!.validate() &&
                                 _isCheckedPersyaratan == true) {
+<<<<<<< HEAD
                               goRegis();
 
+=======
+>>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                               _formKey.currentState!.save();
                             }
                           },
                           child: Text(
                             'Daftar',
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 14),
                           ),
                         ),
                         const SizedBox(height: 32),
