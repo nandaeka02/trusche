@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/login_page.dart';
 import 'package:trusche/pages/register_page.dart';
 import 'package:trusche/pages/user/userJadwalKebersihan.dart';
 import 'package:trusche/pages/user/userNotification.dart';
@@ -235,17 +236,24 @@ class _UserProfileState extends State<UserProfile> {
                     SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 35,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          color: ConstantColors.primaryColor,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                          child: Text(
-                        "Keluar",
-                        style: TextStyle(color: Colors.white),
-                      )),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (_) => LoginPage()),
+                        );
+                      },
+                      child: Container(
+                        height: 35,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            color: ConstantColors.primaryColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                            child: Text(
+                          "Keluar",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                      ),
                     )
                   ],
                 ),

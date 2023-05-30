@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/admin/adminBottomBar_page.dart';
 import 'package:trusche/pages/admin/adminHome_page.dart';
 import 'package:trusche/pages/register_page.dart';
 import 'package:trusche/pages/user/userHome_page.dart';
@@ -19,24 +21,28 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
 
-  _loginProgress() {
-    if (_emailController.text == 'admin@admin.com' &&
-        _passwordController.text == '123') {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => AdminHomePage()),
-      );
-    } else {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => UserHomepage()),
-      );
-    }
-  }
+  // _loginProgress() {
+  //   if (_emailController.text == 'admin@admin.com' &&
+  //       _passwordController.text == '123') {
+  //     Navigator.of(context).pushReplacement(
+  //       MaterialPageRoute(builder: (_) => AdminHomePage()),
+  //     );
+  //   } else {
+  //     Navigator.of(context).pushReplacement(
+  //       MaterialPageRoute(builder: (_) => UserHomepage()),
+  //     );
+  //   }
+  // }
 
-  void getPembayarankebersihanbyID() {
+  void getRoleLogin() {
+    setState(() {
+      loading = true;
+    });
     iniLogin(_emailController.text, _passwordController.text).then((value) {
       setState(() {
         if (value == "admin") {
@@ -47,6 +53,27 @@ class _LoginPageState extends State<LoginPage> {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (_) => UserbotBar()),
           );
+        } else {
+          setState(() {
+            loading = false;
+          });
+          Alert(
+            type: AlertType.error,
+            context: context,
+            title: "Gagal",
+            desc: "Periksa Email Dan Password Kembali",
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "Batalkan",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.pop(context),
+                color: ConstantColors.primaryColor,
+                radius: BorderRadius.circular(15.0),
+              ),
+            ],
+          ).show();
         }
       });
     });
@@ -168,7 +195,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       onTap: () {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => AdminHomePage()),
+                          MaterialPageRoute(builder: (_) => AdminBottomBarPage()),
                         );
                       },
                     ),
@@ -185,12 +212,16 @@ class _LoginPageState extends State<LoginPage> {
                         //   _formKey.currentState!.save();
                         //   _loginProgress();
                         // }
-                        getPembayarankebersihanbyID();
+                        getRoleLogin();
                       },
-                      child: Text(
-                        'Login',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      child: (loading)
+                          ? Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Text(
+                              'Login',
+                              style: TextStyle(fontSize: 16),
+                            ),
                     ),
                     const SizedBox(height: 16),
                     Row(

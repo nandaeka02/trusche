@@ -7,7 +7,7 @@ Future getuserLogin() async {
   final String? tokennya = prefs.getString('tokensave');
 
   try {
-    var url = "http://192.168.100.47:8000/api/detailuser";
+    var url = "http://172.34.218.146:8000/api/detailuser";
 
     var hasil = await http
         .get(Uri.parse(url), headers: {'Authorization': 'Bearer $tokennya'});

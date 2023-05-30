@@ -11,7 +11,7 @@ Future iniLogin(String email, String password) async {
   final String? action = prefs.getString('tokensave');
 
   try {
-    var url = "http://192.168.100.47:8000/api/login";
+    var url = "http://172.34.218.146:8000/api/login";
     var body = {"email": email, "password": password};
     // return print(body);
     var hasil = await http.post(Uri.parse(url), body: body);
@@ -32,6 +32,44 @@ Future iniLogin(String email, String password) async {
       // print(action);
 
       return role;
+      // return hasil.statusCode;
+    }
+  } catch (e) {
+    print(e.toString());
+    // log(e.toString());
+  }
+}
+
+Future iniRegis(String nik, String fullname, String alamat, String no_telp,
+    String email, String password) async {
+  try {
+    var url = "http://172.34.218.146:8000/api/register";
+    var body = {
+      "nik_user": nik,
+      "full_name": fullname,
+      "address": alamat,
+      "phone_number": no_telp,
+      "email": email,
+      "password": password,
+      "role": "user"
+    };
+    // return print(body);
+    // return print(body);
+    var hasil = await http.post(Uri.parse(url), body: body);
+    // print(hasil);
+    print(hasil.statusCode.toString());
+
+    if (hasil.statusCode != 200) {
+      print("error Daftar");
+      return hasil.statusCode;
+    }
+
+    if (hasil.statusCode == 200) {
+      print("Sukses Daftar");
+
+      // print(action);
+
+      return hasil.statusCode;
       // return hasil.statusCode;
     }
   } catch (e) {

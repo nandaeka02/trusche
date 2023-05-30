@@ -6,7 +6,7 @@ late HistoryPembayaran historyPembayaran;
 
 Future getPembayarankeamanansingle(String bulan) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayarankeamanan/2/$bulan";
+    var url = "http://172.34.218.146:8000/api/pembayarankeamanan/2/$bulan";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -20,7 +20,6 @@ Future getPembayarankeamanansingle(String bulan) async {
     if (hasil.statusCode == 200) {
       print("Ada Data");
       return hasil.statusCode;
-      
     }
   } catch (e) {
     print(e.toString());
@@ -30,7 +29,7 @@ Future getPembayarankeamanansingle(String bulan) async {
 
 Future getPembayarankebersihansingle(String bulan) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayaran/2/$bulan";
+    var url = "http://172.34.218.146:8000/api/pembayaran/2/$bulan";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -44,7 +43,6 @@ Future getPembayarankebersihansingle(String bulan) async {
     if (hasil.statusCode == 200) {
       print("Ada Data");
       return hasil.statusCode;
-      
     }
   } catch (e) {
     print(e.toString());
@@ -55,7 +53,7 @@ Future getPembayarankebersihansingle(String bulan) async {
 Future getPembayaranhist(int id) async {
   try {
     print(id);
-    var url = "http://192.168.100.47:8000/api/pembayaranuser/$id";
+    var url = "http://172.34.218.146:8000/api/pembayaranuser/$id";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -71,7 +69,6 @@ Future getPembayaranhist(int id) async {
       // historyPembayaran = historyPembayaranFromJson(hasil.body.toString());
       final data = historyPembayaranFromJson(hasil.body.toString());
       return data;
-
     }
   } catch (e) {
     print(e.toString());
@@ -81,7 +78,7 @@ Future getPembayaranhist(int id) async {
 
 Future getPembayarankeamananhist(int id) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayarankeamananuser/$id";
+    var url = "http://172.34.218.146:8000/api/pembayarankeamananuser/$id";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -98,7 +95,6 @@ Future getPembayarankeamananhist(int id) async {
       // historyPembayaran = historyPembayaranFromJson(hasil.body.toString());
       final data = historyPembayaranFromJson(hasil.body.toString());
       return data;
-
     }
   } catch (e) {
     print(e.toString());

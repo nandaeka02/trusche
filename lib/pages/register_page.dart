@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:trusche/configs/colors.dart';
+import 'package:trusche/pages/login_page.dart';
+
+import 'auth/auth_Vmodel.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -12,15 +16,50 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
+  TextEditingController _nikController = TextEditingController();
+  TextEditingController _namaController = TextEditingController();
+  TextEditingController _alamatController = TextEditingController();
+  TextEditingController _notelpController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   TextEditingController _confirmpasswordController = TextEditingController();
-  TextEditingController _nikController = TextEditingController();
-  TextEditingController _namaController = TextEditingController();
-  TextEditingController _notelpController = TextEditingController();
-  TextEditingController _alamatController = TextEditingController();
   bool _obscureText = true;
   bool _isCheckedPersyaratan = false;
+
+  void goRegis() {
+    iniRegis(
+            _nikController.text,
+            _namaController.text,
+            _alamatController.text,
+            _notelpController.text,
+            _emailController.text,
+            _passwordController.text)
+        .then((value) {
+      setState(() {
+        if (value == 200) {
+          Alert(
+            type: AlertType.success,
+            context: context,
+            title: "Sukses",
+            desc: "Register Sukses!",
+            buttons: [
+              DialogButton(
+                child: Text(
+                  "Login",
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                onPressed: () => Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => LoginPage()),
+                ),
+                color: ConstantColors.primaryColor,
+                radius: BorderRadius.circular(15.0),
+              ),
+            ],
+          ).show();
+        }
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
           title: Text(
             'Register',
             style: TextStyle(
-                fontSize:24, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black),
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -132,17 +171,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          "Email Address",
+                          "Alamat",
                           style: TextStyle(color: Colors.black87, fontSize: 16),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
-                          controller: _emailController,
+                          controller: _alamatController,
                           autofocus: true,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
-                            hintText: 'Email Address',
+                            hintText: 'Alamat',
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -163,7 +202,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Tolong lengkapi Email Address';
+                              return 'Tolong lengkapi Alamat';
                             }
                             return null;
                           },
@@ -208,17 +247,17 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          "Alamat",
+                          "Email Address",
                           style: TextStyle(color: Colors.black87, fontSize: 16),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
-                          controller: _alamatController,
+                          controller: _emailController,
                           autofocus: true,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
-                            hintText: 'Alamat',
+                            hintText: 'Email Address',
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -239,7 +278,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {
-                              return 'Tolong lengkapi Alamat';
+                              return 'Tolong lengkapi Email Address';
                             }
                             return null;
                           },
@@ -346,8 +385,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               return 'Tolong lengkapi Konfirmasi Kata Sandi';
                             }
                             print(value);
-                            if (value != _passwordController.text){
-                              return 'Konfirmasi Kata Sandi harus sama dengan Kata Sandi ';
+                            if (value != _passwordController.text) {
+                              return 'Kata Sandi Tidak samaaa ';
                             }
                             return null;
                           },
@@ -380,7 +419,10 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
                           ),
                           onPressed: () {
-                            if (_formKey.currentState!.validate() && _isCheckedPersyaratan == true) {
+                            if (_formKey.currentState!.validate() &&
+                                _isCheckedPersyaratan == true) {
+                              goRegis();
+
                               _formKey.currentState!.save();
                             }
                           },
