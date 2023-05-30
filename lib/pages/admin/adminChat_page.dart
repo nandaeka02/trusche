@@ -16,6 +16,7 @@ class _AdminChatPageState extends State<AdminChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: Icon(Icons.abc, size: 0),
           title: Text(
             "ChatBox",
             style: TextStyle(

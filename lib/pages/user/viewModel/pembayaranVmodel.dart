@@ -6,7 +6,7 @@ late HistoryPembayaran historyPembayaran;
 
 Future getPembayarankeamanansingle(String bulan) async {
   try {
-    var url = "http://172.34.218.146:8000/api/pembayarankeamanan/2/$bulan";
+    var url = "http://192.168.100.47:8000/api/pembayarankeamanan/2/$bulan";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -27,9 +27,68 @@ Future getPembayarankeamanansingle(String bulan) async {
   }
 }
 
+Future postKeamananUser(
+    String status, String pembayaran_bulan, String users_id) async {
+  try {
+    var url = "http://192.168.100.47:8000/api/tambahpembayarankeamanan";
+    var body = {
+      "status": status,
+      "pembayaran_bulan": pembayaran_bulan,
+      "users_id": users_id
+    };
+    // return print(body);
+    // return print(body);
+    var hasil = await http.post(Uri.parse(url), body: body);
+    // print(hasil);
+    print(hasil.statusCode.toString());
+
+    if (hasil.statusCode != 201) {
+      print("post gagal");
+      return hasil.statusCode;
+    }
+
+    if (hasil.statusCode == 201) {
+      print("Post Sukses");
+      return hasil.statusCode;
+    }
+  } catch (e) {
+    print(e.toString());
+    // log(e.toString());
+  }
+}
+
+Future postKebersihanUser(
+    String status, String pembayaran_bulan, String users_id) async {
+  try {
+    var url = "http://192.168.100.47:8000/api/tambahpembayarankebersihan";
+    var body = {
+      "status": status,
+      "pembayaran_bulan": pembayaran_bulan,
+      "users_id": users_id
+    };
+    // return print(body);
+    var hasil = await http.post(Uri.parse(url), body: body);
+    // print(hasil);
+    print(hasil.statusCode.toString());
+
+    if (hasil.statusCode != 201) {
+      print("post gagal");
+      return hasil.statusCode;
+    }
+
+    if (hasil.statusCode == 201) {
+      print("Post Sukses");
+      return hasil.statusCode;
+    }
+  } catch (e) {
+    print(e.toString());
+    // log(e.toString());
+  }
+}
+
 Future getPembayarankebersihansingle(String bulan) async {
   try {
-    var url = "http://172.34.218.146:8000/api/pembayaran/2/$bulan";
+    var url = "http://192.168.100.47:8000/api/pembayaran/2/$bulan";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -53,7 +112,7 @@ Future getPembayarankebersihansingle(String bulan) async {
 Future getPembayaranhist(int id) async {
   try {
     print(id);
-    var url = "http://172.34.218.146:8000/api/pembayaranuser/$id";
+    var url = "http://192.168.100.47:8000/api/pembayaranuser/$id";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);
@@ -78,7 +137,7 @@ Future getPembayaranhist(int id) async {
 
 Future getPembayarankeamananhist(int id) async {
   try {
-    var url = "http://172.34.218.146:8000/api/pembayarankeamananuser/$id";
+    var url = "http://192.168.100.47:8000/api/pembayarankeamananuser/$id";
 
     var hasil = await http.get(Uri.parse(url));
     // print(hasil);

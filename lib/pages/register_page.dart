@@ -174,19 +174,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-<<<<<<< HEAD
-                          "Alamat",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
-                        ),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: _alamatController,
-                          autofocus: true,
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            hintText: 'Alamat',
-=======
                           "Email Address",
                           style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
@@ -199,7 +186,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             filled: true,
                             contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                             hintText: 'Email Address',
->>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -266,19 +252,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-<<<<<<< HEAD
-                          "Email Address",
-                          style: TextStyle(color: Colors.black87, fontSize: 16),
-                        ),
-                        const SizedBox(height: 8),
-                        TextFormField(
-                          controller: _emailController,
-                          autofocus: true,
-                          decoration: InputDecoration(
-                            fillColor: Colors.white,
-                            filled: true,
-                            hintText: 'Email Address',
-=======
                           "Alamat",
                           style: TextStyle(color: Colors.black87, fontSize: 14),
                         ),
@@ -291,7 +264,6 @@ class _RegisterPageState extends State<RegisterPage> {
                             filled: true,
                             contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                             hintText: 'Alamat',
->>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                             hintStyle: TextStyle(color: Colors.grey),
                             errorBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -422,11 +394,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             }
                             print(value);
                             if (value != _passwordController.text) {
-<<<<<<< HEAD
-                              return 'Kata Sandi Tidak samaaa ';
-=======
                               return 'Konfirmasi Kata Sandi harus sama dengan Kata Sandi ';
->>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                             }
                             return null;
                           },
@@ -434,7 +402,10 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         const SizedBox(height: 16),
                         CheckboxListTile(
-                          title: Text("Setuju dengan syarat dan ketentuan", style: TextStyle(fontSize: 14),),
+                          title: Text(
+                            "Setuju dengan syarat dan ketentuan",
+                            style: TextStyle(fontSize: 14),
+                          ),
                           controlAffinity: ListTileControlAffinity.leading,
                           contentPadding: EdgeInsets.zero,
                           onChanged: (bool? value) {
@@ -444,9 +415,8 @@ class _RegisterPageState extends State<RegisterPage> {
                               });
                             }
                           },
-                          value:_isCheckedPersyaratan,
+                          value: _isCheckedPersyaratan,
                         ),
-                        
                         const SizedBox(height: 40),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -459,11 +429,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: () {
                             if (_formKey.currentState!.validate() &&
                                 _isCheckedPersyaratan == true) {
-<<<<<<< HEAD
-                              goRegis();
-
-=======
->>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                               _formKey.currentState!.save();
                             }
                           },

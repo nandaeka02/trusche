@@ -11,7 +11,7 @@ Future iniLogin(String email, String password) async {
   final String? action = prefs.getString('tokensave');
 
   try {
-    var url = "http://172.34.218.146:8000/api/login";
+    var url = "http://192.168.100.47:8000/api/login";
     var body = {"email": email, "password": password};
     // return print(body);
     var hasil = await http.post(Uri.parse(url), body: body);
@@ -43,7 +43,7 @@ Future iniLogin(String email, String password) async {
 Future iniRegis(String nik, String fullname, String alamat, String no_telp,
     String email, String password) async {
   try {
-    var url = "http://172.34.218.146:8000/api/register";
+    var url = "http://192.168.100.47:8000/api/register";
     var body = {
       "nik_user": nik,
       "full_name": fullname,

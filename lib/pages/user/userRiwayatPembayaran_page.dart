@@ -32,6 +32,12 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
   bool _obscureText = true;
   final _pageController = PageController(initialPage: 2);
 
+  @override
+  void dispose() {
+    // _pageController.dispose();
+    super.dispose();
+  }
+
   void initState() {
     super.initState();
     getUser();
@@ -69,12 +75,6 @@ class _UserRiwayatPembayaranState extends State<UserRiwayatPembayaran> {
       });
       // print(dataMitraHome?.success.first.alamatRestoran);
     });
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
   }
 
   @override

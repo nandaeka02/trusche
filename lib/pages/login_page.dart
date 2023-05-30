@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         if (value == "admin") {
           Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (_) => AdminHomePage()),
+            MaterialPageRoute(builder: (_) => AdminBottomBarPage()),
           );
         } else if (value == "user") {
           Navigator.of(context).pushReplacement(
@@ -199,7 +199,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       onTap: () {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => AdminBottomBarPage()),
+                          MaterialPageRoute(
+                              builder: (_) => AdminBottomBarPage()),
                         );
                       },
                     ),
@@ -218,21 +219,10 @@ class _LoginPageState extends State<LoginPage> {
                         // }
                         getRoleLogin();
                       },
-<<<<<<< HEAD
-                      child: (loading)
-                          ? Center(
-                              child: CircularProgressIndicator(),
-                            )
-                          : Text(
-                              'Login',
-                              style: TextStyle(fontSize: 16),
-                            ),
-=======
                       child: Text(
                         'Login',
                         style: TextStyle(fontSize: 14),
                       ),
->>>>>>> c236c2643402a5ba3da50e053ab504119da82dbc
                     ),
                     const SizedBox(height: 16),
                     Row(
