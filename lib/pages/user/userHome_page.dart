@@ -5,11 +5,13 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/register_page.dart';
 import 'package:trusche/pages/user/model/UserDetail.dart';
+import 'package:trusche/pages/user/userChatRoom_page.dart';
 import 'package:trusche/pages/user/userJadwalKeamanan.dart';
 import 'package:trusche/pages/user/userJadwalKebersihan.dart';
 import 'package:trusche/pages/user/userNotification.dart';
 import 'package:trusche/pages/user/userProfile.dart';
 import 'package:trusche/pages/user/viewModel/getUserVmodel.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 import '../../widgets/schedulecard_widget.dart';
 
@@ -26,7 +28,7 @@ class _UserHomepageState extends State<UserHomepage> {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController email = TextEditingController();
+  TextEditingController keluhan = TextEditingController();
 
   bool _obscureText = true;
   final _pageController = PageController(initialPage: 2);
@@ -167,33 +169,38 @@ class _UserHomepageState extends State<UserHomepage> {
                             width: 320,
                             child: Column(
                               children: [
-                                Container(
-                                  width: 290,
-                                  height: 45,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: ConstantColors.primaryColor),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Padding(
-                                          padding: EdgeInsets.only(right: 15),
-                                          child: Icon(
-                                            size: 30,
-                                            Icons.call,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Panggilan Darurat",
-                                          style: TextStyle(
+                                GestureDetector(
+                                  onTap: () {
+                                    UrlLauncher.launch('tel:+6291723231');
+                                  },
+                                  child: Container(
+                                    width: 290,
+                                    height: 45,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: ConstantColors.primaryColor),
+                                    child: Center(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.only(right: 15),
+                                            child: Icon(
+                                              size: 30,
+                                              Icons.call,
                                               color: Colors.white,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 18),
-                                        )
-                                      ],
+                                            ),
+                                          ),
+                                          Text(
+                                            "Panggilan Darurat",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 )
@@ -217,7 +224,7 @@ class _UserHomepageState extends State<UserHomepage> {
                                   height: 40,
                                   width: 300,
                                   child: TextFormField(
-                                    controller: email,
+                                    controller: keluhan,
                                     cursorColor: Color(0xFF9b9b9b),
                                     keyboardType: TextInputType.emailAddress,
                                     decoration: InputDecoration(
@@ -251,7 +258,18 @@ class _UserHomepageState extends State<UserHomepage> {
                                   top: 5,
                                   child: GestureDetector(
                                     onTap: () {
-                                      print("bisa");
+                                      if (keluhan.text == "") {
+                                        print("kosong");
+                                      } else {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UserChatRoomPage(
+                                                    chat: keluhan.text,
+                                                  )),
+                                        );
+                                      }
                                     },
                                     child: CircleAvatar(
                                       radius: 15,

@@ -1,11 +1,12 @@
 import '../model/alluser_admin.dart';
 import 'package:http/http.dart' as http;
 
+import '../model/singleuser_admin.dart';
 import '../model/transaksi_admin.dart';
 
 Future getPetugas() async {
   try {
-    var url = "http://192.168.100.47:8000/api/user/petugas";
+    var url = "http://192.168.100.2:8000/api/user/petugas";
 
     var hasil = await http.get(
       Uri.parse(url),
@@ -31,7 +32,7 @@ Future getPetugas() async {
 
 Future getWarga() async {
   try {
-    var url = "http://192.168.100.47:8000/api/user/user";
+    var url = "http://192.168.100.2:8000/api/user/user";
 
     var hasil = await http.get(
       Uri.parse(url),
@@ -55,9 +56,35 @@ Future getWarga() async {
   }
 }
 
+Future getWargasingle(int id) async {
+  try {
+    var url = "http://192.168.100.2:8000/api/users/$id";
+
+    var hasil = await http.get(
+      Uri.parse(url),
+    );
+    // print(hasil);
+    print(hasil.statusCode.toString());
+
+    if (hasil.statusCode != 200) {
+      print("error get data petugas");
+      return hasil.statusCode;
+    }
+
+    if (hasil.statusCode == 200) {
+      print("sukses Data petugas");
+      final data = adminUserSingleFromJson(hasil.body);
+      return data;
+    }
+  } catch (e) {
+    print(e.toString());
+    // log(e.toString());
+  }
+}
+
 Future getTransaksikebersihan(String bulan) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayaranuserall/$bulan";
+    var url = "http://192.168.100.2:8000/api/pembayaranuserall/$bulan";
 
     var hasil = await http.get(
       Uri.parse(url),
@@ -83,7 +110,7 @@ Future getTransaksikebersihan(String bulan) async {
 
 Future getTransaksikeamanan(String bulan) async {
   try {
-    var url = "http://192.168.100.47:8000/api/pembayaranuserkeamananall/$bulan";
+    var url = "http://192.168.100.2:8000/api/pembayaranuserkeamananall/$bulan";
 
     var hasil = await http.get(
       Uri.parse(url),

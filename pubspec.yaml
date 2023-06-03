@@ -38,6 +38,7 @@ dependencies:
   http: any
   rflutter_alert: ^2.0.7
   shared_preferences: ^2.1.1
+  url_launcher: ^6.1.11
 
 
 

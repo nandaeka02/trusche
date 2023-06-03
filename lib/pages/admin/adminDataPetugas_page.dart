@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:trusche/configs/colors.dart';
 import 'package:trusche/pages/admin/viewModel/admin_viewmodel.dart';
 
+import 'adminDataSingle_page.dart';
 import 'model/alluser_admin.dart';
 
 class AdminDataPetugasPage extends StatefulWidget {
@@ -141,30 +142,37 @@ class _AdminDataPetugasPageState extends State<AdminDataPetugasPage> {
                       shrinkWrap: true,
                       itemCount: userRoleAdmin?.user.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: InkWell(
-                            splashColor: ConstantColors.primarysplashColor,
-                            borderRadius: BorderRadius.circular(8),
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.all(8),
-                              // height: 58,
-                              child: ListTile(
+                        var petugas = userRoleAdmin?.user[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdminDataSinglePage(
+                                        idnya: petugas!.id,
+                                      )),
+                            );
+                          },
+                          child: Card(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ListTile(
                                 title: Text(
                                   userRoleAdmin?.user[index].fullName ?? "null",
                                   style: TextStyle(fontWeight: FontWeight.w500),
                                 ),
-                                leading: Icon(Icons.person),
-                                subtitle: Text(
-                                  'Bojong Gede Blok TD 6 No 5A RT 002 RW 012',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ),
+                                leading: Icon(Icons.person, size: 50),
+                                subtitle: Padding(
+                                  padding: EdgeInsets.all(0),
+                                  child: Text(
+                                    // 'Bojong Gede Blok TD 6 No 5A RT 002 RW 012',
+                                    userRoleAdmin?.user[index].address ??
+                                        'null',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                )),
                           ),
                         );
                       },

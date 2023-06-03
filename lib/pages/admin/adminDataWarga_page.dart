@@ -6,6 +6,7 @@ import 'package:trusche/configs/dataWarga.dart';
 import 'package:trusche/pages/admin/adminDetailUser_page.dart';
 import 'package:trusche/pages/admin/viewModel/admin_viewmodel.dart';
 
+import 'adminDataSingle_page.dart';
 import 'model/alluser_admin.dart';
 
 class AdminDataWargaPage extends StatefulWidget {
@@ -46,59 +47,6 @@ class _AdminDataWargaPageState extends State<AdminDataWargaPage> {
         userRoleAdmin = value;
       });
     });
-  }
-
-  // void filterSearchResults(String query) {
-  //   setState(() {
-  //     items = duplicateItems.where((widget) {
-  //       if (widget is Card) {
-  //         Card card = widget;
-  //         if (card.child is InkWell) {
-  //           InkWell inkWell = card.child as InkWell;
-  //           if (inkWell.child is Container) {
-  //             Container container = inkWell.child as Container;
-  //             if (container.child is ListTile) {
-  //               ListTile listTile = container.child as ListTile;
-  //               return listTile.title
-  //                   .toString()
-  //                   .toLowerCase()
-  //                   .contains(query.toLowerCase());
-  //             }
-  //           }
-  //         }
-  //       }
-  //       return false;
-  //     }).toList();
-  //   });
-  // }
-
-  static Widget _buildCard(String text) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: InkWell(
-        splashColor: ConstantColors.primarysplashColor,
-        borderRadius: BorderRadius.circular(8),
-        onTap: () {},
-        child: Container(
-          padding: EdgeInsets.all(8),
-          // height: 58,
-          child: ListTile(
-            title: Text(
-              text,
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
-            leading: Icon(Icons.person),
-            subtitle: Text(
-              'Bojong Gede Blok TD 6 No 5A RT 002 RW 012',
-              style: TextStyle(fontSize: 12),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   @override
@@ -154,30 +102,37 @@ class _AdminDataWargaPageState extends State<AdminDataWargaPage> {
                       shrinkWrap: true,
                       itemCount: userRoleAdmin?.user.length,
                       itemBuilder: (context, index) {
-                        return Card(
-                          margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: InkWell(
-                            splashColor: ConstantColors.primarysplashColor,
-                            borderRadius: BorderRadius.circular(8),
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.all(8),
-                              // height: 58,
-                              child: ListTile(
+                        var petugas = userRoleAdmin?.user[index];
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => AdminDataSinglePage(
+                                        idnya: petugas!.id,
+                                      )),
+                            );
+                          },
+                          child: Card(
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: ListTile(
                                 title: Text(
                                   userRoleAdmin?.user[index].fullName ?? "null",
                                   style: TextStyle(fontWeight: FontWeight.w500),
                                 ),
-                                leading: Icon(Icons.person),
-                                subtitle: Text(
-                                  'Bojong Gede Blok TD 6 No 5A RT 002 RW 012',
-                                  style: TextStyle(fontSize: 12),
-                                ),
-                              ),
-                            ),
+                                leading: Icon(Icons.person, size: 50),
+                                subtitle: Padding(
+                                  padding: EdgeInsets.all(0),
+                                  child: Text(
+                                    // 'Bojong Gede Blok TD 6 No 5A RT 002 RW 012',
+                                    userRoleAdmin?.user[index].address ??
+                                        'null',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
+                                )),
                           ),
                         );
                       },

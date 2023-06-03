@@ -189,21 +189,6 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {},
                     ),
                     const SizedBox(height: 32),
-                    GestureDetector(
-                      child: Text(
-                        "ke admin",
-                        style: TextStyle(
-                            color: ConstantColors.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14),
-                      ),
-                      onTap: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                              builder: (_) => AdminBottomBarPage()),
-                        );
-                      },
-                    ),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.only(top: 12, bottom: 12),
