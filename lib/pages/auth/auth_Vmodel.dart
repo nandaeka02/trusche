@@ -77,3 +77,40 @@ Future iniRegis(String nik, String fullname, String alamat, String no_telp,
     // log(e.toString());
   }
 }
+
+Future iniUbahData(String nik, String fullname, String alamat, String no_telp,
+    String email, int id) async {
+  try {
+    var url = "http://192.168.100.2:8000/api/updateuser/$id";
+    var body = {
+      "nik_user": nik,
+      "full_name": fullname,
+      "address": alamat,
+      "phone_number": no_telp,
+      "email": email,
+    };
+    // return body;
+    // return print(body);
+    // return print(body);
+    var hasil = await http.post(Uri.parse(url), body: body);
+    // print(hasil);
+    print(hasil.statusCode.toString());
+
+    if (hasil.statusCode != 200) {
+      print("error update");
+      return hasil.statusCode;
+    }
+
+    if (hasil.statusCode == 200) {
+      print("Sukses update");
+
+      // print(action);
+
+      return hasil.statusCode;
+      // return hasil.statusCode;
+    }
+  } catch (e) {
+    print(e.toString());
+    // log(e.toString());
+  }
+}

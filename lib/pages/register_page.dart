@@ -430,6 +430,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             if (_formKey.currentState!.validate() &&
                                 _isCheckedPersyaratan == true) {
                               _formKey.currentState!.save();
+                              goRegis();
                             }
                           },
                           child: Text(

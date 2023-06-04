@@ -12,6 +12,7 @@ import 'package:trusche/pages/user/viewModel/getUserVmodel.dart';
 
 import '../../widgets/schedulecard_widget.dart';
 import '../user/model/UserDetail.dart';
+import '../EditProfile.dart';
 
 class AdminSettingsPage extends StatefulWidget {
   const AdminSettingsPage({super.key});
@@ -87,9 +88,17 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                 child: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
               ),
               actions: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(top: 15, right: 10),
-                    child: Text("Ubah Profil"))
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => editProfile()),
+                    );
+                  },
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 15, right: 10),
+                      child: Text("Ubah Profil")),
+                )
               ],
             ),
             body: Stack(
@@ -118,6 +127,11 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                     ),
                     Text(
                       userdetail!.user.nikUser ?? "null",
+                      style:
+                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      userdetail!.user.id.toString(),
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),

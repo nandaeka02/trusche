@@ -11,6 +11,7 @@ import 'package:trusche/pages/user/userProfile.dart';
 import 'package:trusche/pages/user/viewModel/getUserVmodel.dart';
 
 import '../../widgets/schedulecard_widget.dart';
+import '../EditProfile.dart';
 import 'model/UserDetail.dart';
 
 class UserProfile extends StatefulWidget {
@@ -87,9 +88,17 @@ class _UserProfileState extends State<UserProfile> {
                 child: Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
               ),
               actions: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(top: 15, right: 10),
-                    child: Text("Ubah Profil"))
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => editProfile()),
+                    );
+                  },
+                  child: Padding(
+                      padding: EdgeInsets.only(top: 15, right: 10),
+                      child: Text("Ubah Profil")),
+                )
               ],
             ),
             body: Stack(
