@@ -41,13 +41,17 @@ class _AdminSchedulePageState extends State<AdminSchedulePage> {
                     child: ScheduleCard(
                       onPressed: () {
                         Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => AdminLihatJadwalPage()),
-                            );
+                          MaterialPageRoute(
+                              builder: (_) => AdminLihatJadwalPage()),
+                        );
                       },
                       child: Column(
                         children: [
                           Icon(Icons.event_available),
-                          Text('Lihat Jadwal', style: TextStyle(fontWeight: FontWeight.bold),)
+                          Text(
+                            'Lihat Jadwal',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
                         ],
                       ),
                     ),
@@ -57,13 +61,17 @@ class _AdminSchedulePageState extends State<AdminSchedulePage> {
                     child: ScheduleCard(
                       onPressed: () {
                         Navigator.of(context).push(
-                              MaterialPageRoute(builder: (_) => AdminBuatJadwalPage()),
-                            );
+                          MaterialPageRoute(
+                              builder: (_) => AdminBuatJadwalPage()),
+                        );
                       },
                       child: Column(
                         children: [
                           Icon(Icons.edit_calendar),
-                          Text('Atur Jadwal', style: TextStyle(fontWeight: FontWeight.bold),)
+                          Text(
+                            'Atur Jadwal',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )
                         ],
                       ),
                     ),
