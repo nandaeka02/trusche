@@ -16,30 +16,6 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController _dateController = TextEditingController();
 
-  final List<String> _ItemRW = [
-    'RW 01',
-    'RW 02',
-    'RW 03',
-    'RW 04',
-    'RW 05',
-    'RW 06',
-    'RW 07',
-    'RW 08',
-    'RW 09',
-    'RW 10',
-  ];
-  final List<String> _ItemRT = [
-    'RT 01',
-    'RT 02',
-    'RT 03',
-    'RT 04',
-    'RT 05',
-    'RT 06',
-    'RT 07',
-    'RT 08',
-    'RT 09',
-    'RT 10',
-  ];
   final List<String> _ItemWaktu = [
     "Pagi",
     "Siang",
@@ -53,7 +29,6 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
     "Wahyudi",
     "Sanjaya",
   ];
-  
 
   String? selectedRW;
   String? selectedRT;
@@ -133,178 +108,6 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
-                              const SizedBox(height: 16),
-                              DropdownButtonFormField2(
-                                decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: EdgeInsets.zero,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.never,
-                                    // border: InputBorder.none,
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.red,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.transparent),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0))),
-                                isExpanded: true,
-                                hint: const Text(
-                                  'Pilih RW',
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                items: _ItemRW.map(
-                                    (item) => DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(
-                                          item,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ))).toList(),
-                                validator: (value) {
-                                  if (value == null) {
-                                    return 'Tolong lengkapi RW.';
-                                  }
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  selectedRW = value.toString();
-                                  print(selectedRW!.toLowerCase());
-                                },
-                                onSaved: (value) {
-                                  selectedRW = value.toString();
-                                },
-                                buttonStyleData: ButtonStyleData(
-                                  height: 50,
-                                  width: 160,
-                                  padding: const EdgeInsets.only(
-                                      left: 14, right: 14),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: Colors.black26,
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                  elevation: 2,
-                                ),
-                                iconStyleData: const IconStyleData(
-                                  icon: Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.black45,
-                                  ),
-                                  iconSize: 30,
-                                ),
-                                dropdownStyleData: DropdownStyleData(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
-                              DropdownButtonFormField2(
-                                decoration: InputDecoration(
-                                    isDense: true,
-                                    contentPadding: EdgeInsets.zero,
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    fillColor: Colors.white,
-                                    filled: true,
-                                    floatingLabelBehavior:
-                                        FloatingLabelBehavior.never,
-                                    // border: InputBorder.none,
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Colors.red,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.transparent),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0)),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide.none,
-                                        borderRadius:
-                                            BorderRadius.circular(10.0))),
-                                isExpanded: true,
-                                hint: const Text(
-                                  'Pilih RT',
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                items: _ItemRT.map(
-                                    (item) => DropdownMenuItem<String>(
-                                        value: item,
-                                        child: Text(
-                                          item,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ))).toList(),
-                                validator: (value) {
-                                  if (value == null) {
-                                    return 'Tolong lengkapi RT.';
-                                  }
-                                  return null;
-                                },
-                                onChanged: (value) {
-                                  selectedRW = value.toString();
-                                  print(selectedRW!.toLowerCase());
-                                },
-                                onSaved: (value) {
-                                  selectedRW = value.toString();
-                                },
-                                buttonStyleData: ButtonStyleData(
-                                  height: 50,
-                                  width: 160,
-                                  padding: const EdgeInsets.only(
-                                      left: 14, right: 14),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: Colors.black26,
-                                    ),
-                                    color: Colors.white,
-                                  ),
-                                  elevation: 2,
-                                ),
-                                iconStyleData: const IconStyleData(
-                                  icon: Icon(
-                                    Icons.arrow_drop_down,
-                                    color: Colors.black45,
-                                  ),
-                                  iconSize: 30,
-                                ),
-                                dropdownStyleData: DropdownStyleData(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                ),
-                              ),
                               const SizedBox(height: 16),
                               DropdownButtonFormField2(
                                 decoration: InputDecoration(
@@ -482,7 +285,8 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
                                 controller: _dateController,
                                 autofocus: true,
                                 decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.fromLTRB(14,16,14,16),
+                                  contentPadding:
+                                      EdgeInsets.fromLTRB(14, 16, 14, 16),
                                   fillColor: Colors.white,
                                   filled: true,
                                   hintText: "Pilih Tanggal",
@@ -514,9 +318,11 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
                                     onPressed: () {
                                       setState(() {
                                         _selectDate(context);
-                                        selectedDateTime = DateFormat.yMd().format(selectedDate);
+                                        selectedDateTime = DateFormat.yMd()
+                                            .format(selectedDate);
                                         // _dateController.text = selectedDateTime == null ? '' : selectedDateTime.toString();
-                                        _dateController.text = selectedDateTime.toString();
+                                        _dateController.text =
+                                            selectedDateTime.toString();
                                       });
                                     },
                                   ),

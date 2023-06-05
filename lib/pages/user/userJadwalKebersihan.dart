@@ -18,7 +18,7 @@ class JadwalKebersihan extends StatefulWidget {
 
 class _JadwalKebersihanState extends State<JadwalKebersihan> {
   final _formKey = GlobalKey<FormState>();
-  String currentDate = DateFormat('dd').format(DateTime.now());
+  String currentDate = DateFormat('d').format(DateTime.now());
   String currentMonth = DateFormat('MM').format(DateTime.now());
 
   late int hminsatu;
@@ -102,7 +102,7 @@ class _JadwalKebersihanState extends State<JadwalKebersihan> {
                                   TextStyle(color: Colors.white, fontSize: 25),
                             ),
                             Text(
-                              currentDate + " Maret",
+                              currentDate + " Juni",
                               style: TextStyle(color: Colors.white),
                             )
                           ],

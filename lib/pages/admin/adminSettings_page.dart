@@ -130,11 +130,6 @@ class _AdminSettingsPageState extends State<AdminSettingsPage> {
                       style:
                           TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      userdetail!.user.id.toString(),
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
                     Container(
                       height: 50.0,
                       width: 320,

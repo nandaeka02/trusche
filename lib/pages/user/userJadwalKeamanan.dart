@@ -18,7 +18,7 @@ class JadwalKeamanan extends StatefulWidget {
 
 class _JadwalKeamananState extends State<JadwalKeamanan> {
   final _formKey = GlobalKey<FormState>();
-  String currentDate = DateFormat('dd').format(DateTime.now());
+  String currentDate = DateFormat('d').format(DateTime.now());
   String currentMonth = DateFormat('MM').format(DateTime.now());
 
   late int hminsatu;
@@ -272,7 +272,9 @@ class _JadwalKeamananState extends State<JadwalKeamanan> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Nama Petugas : Tikno"),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Text("No telp : 0819191812771"),
                             ],
                           ),
@@ -306,7 +308,9 @@ class _JadwalKeamananState extends State<JadwalKeamanan> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Nama Petugas : Kasisrin"),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Text("No telp : 0819191812771"),
                             ],
                           ),
@@ -340,7 +344,9 @@ class _JadwalKeamananState extends State<JadwalKeamanan> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("Nama Petugas : Didi"),
-                              SizedBox(height: 5,),
+                              SizedBox(
+                                height: 5,
+                              ),
                               Text("No telp : 0819191812771"),
                             ],
                           ),
