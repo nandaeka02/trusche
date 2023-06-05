@@ -7,7 +7,6 @@ import 'package:trusche/pages/admin/adminBottomBar_page.dart';
 import 'package:trusche/pages/admin/adminHome_page.dart';
 import 'package:trusche/pages/register_page.dart';
 import 'package:trusche/pages/user/userHome_page.dart';
-import 'package:trusche/pages/user/user_page.dart';
 import 'package:trusche/pages/user/userbotBar.dart';
 
 import 'auth/auth_Vmodel.dart';

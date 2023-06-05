@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:trusche/configs/colors.dart';
 
 class AdminBuatJadwalPage extends StatefulWidget {
@@ -331,6 +332,7 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
                                   if (value!.isEmpty) {
                                     return 'Tolong lengkapi tanggal';
                                   }
+
                                   return null;
                                 },
                               ),
@@ -347,6 +349,26 @@ class _AdminBuatJadwalPageState extends State<AdminBuatJadwalPage> {
                                   if (_formKey.currentState!.validate()) {
                                     _formKey.currentState!.save();
                                     // _loginProgress();
+                                    Alert(
+                                      type: AlertType.success,
+                                      context: context,
+                                      title: "Sukses",
+                                      desc: "Sukses Menambahkan Jadwal",
+                                      buttons: [
+                                        DialogButton(
+                                          child: Text(
+                                            "Tutup",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          color: ConstantColors.primaryColor,
+                                          radius: BorderRadius.circular(15.0),
+                                        ),
+                                      ],
+                                    ).show();
                                   }
                                 },
                                 child: Text(

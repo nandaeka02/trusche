@@ -123,8 +123,12 @@ class _UserHomepageState extends State<UserHomepage> {
                           Container(
                             height: 250,
                             width: double.infinity,
-                            decoration:
-                                BoxDecoration(color: HexColor("#609C56")),
+                            decoration: BoxDecoration(
+                                // color: HexColor("#609C56"),
+                                image: DecorationImage(
+                                    image: ExactAssetImage(
+                                        'assets/images/Background.png'),
+                                    fit: BoxFit.cover)),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
